@@ -1,46 +1,274 @@
-<!DOCTYPE html>
-<html lang="am">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ቤተ ሊቃውንት</title>
-</head>
-<body>
+import React, { useState } from 'react';
 
-    <!-- Header Section -->
-    <header class="navbar">
-        <div class="logo">
-            <img src="logo.png" alt="ቤተ-ሊቃውንት ሎጎ" class="logo-image">
+export default function BeteLikawunt() {
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
+  return (
+    <div style={styles.pageContainer}>
+      {/* 1. Header & Navigation */}
+      <header style={styles.header}>
+        <div style={styles.logo}>ቤተ-ሊቃውንት</div>
+        <div style={styles.searchBox}>
+          <input 
+            type="text" 
+            placeholder="ጥያቄዎችን እዚህ ይፈልጉ..." 
+            style={styles.searchInput}
+          />
         </div>
-        <nav>
-            <ul>
-                <li><a href="#home">መነሻ</a></li>
-                <li><a href="#call">በስልክ ለመጠየቅ</a></li>
-                <li><a href="#ask">በጽሁፍ ለመጠየቅ</a></li>
-                <li><a href="#qa-list">የተመለሱ ጥያቄዎች</a></li>
-            </ul>
-        </nav>
-    </header>
+      </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="cross-icon"></div>
-        <h1>የመንፈሳዊ ጥያቄዎችዎን ምላሽ የሚያገኙበት</h1>
-        <p>ከሃይማኖት አባቶችና ከሊቃውንተ ቤተክርስቲያን ጋር በቀጥታ ይገናኙ።</p>
+      {/* 2. Hero Section (Call 2721) */}
+      <section style={styles.hero}>
+        <h1 style={styles.heroTitle}>የመንፈሳዊ ጥያቄዎችዎ ምላሽ ማግኛ</h1>
+        <p style={styles.heroSubtitle}>ከሃይማኖት አባቶችና ከሊቃውንት ጋር በቀጥታ ይገናኙ</p>
+        <a href="tel:2721" style={styles.callButton}>
+          📞 አሁኑኑ ይደውሉ፡ 2721
+        </a>
+      </section>
 
-        <!-- Direct Call Button -->
-        <div class="call-action-box">
-            <span>በስልክ መስመራችን በቀጥታ ይደውሉ</span>
-            <a href="tel:2721" class="btn-call">📞 አሁኑኑ ይደውሉ: 2721</a>
-        </div>
-    </section>
+      {/* 3. Main Content Container */}
+      <main style={styles.container}>
+        
+        {/* Form Section */}
+        <section style={styles.card}>
+          <h2 style={styles.cardTitle}>በጽሁፍ ጥያቄ ለማስገባት</h2>
+          {submitted ? (
+            <div style={styles.successMessage}>
+              ጥያቄዎ በጥሩ ሁኔታ ተልኳል! አባቶች ምላሹን በቅርቡ ይሰጡበታል።
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} style={styles.form}>
+              <div style={styles.formGroup}>
+                <label style={styles.label}>ስም (አማራጭ)</label>
+                <input 
+                  type="text" 
+                  placeholder="ስምዎን ያስገቡ" 
+                  style={styles.input} 
+                />
+              </div>
 
-    <!-- Call Info Section -->
-    <section id="call" class="call-info-section">
-        <h2>በአጭር የስልክ መስመር 2721 ይደውሉ</h2>
-        <p>የአገልግሎት ሰዓት መመሪያዎችን ከመምህራነ ሃይማኖት አባቶች ጋር የቃል በቃል ውይይት ለማድረግ</p>
-        <a href="tel:2721" class="btn-call-large">2721 ይደውሉ</a>
-    </section>
+              <div style={styles.formGroup}>
+                <label style={styles.label}>ስልክ ቁጥር (ምስጢርነቱ የተጠበቀ ነው)</label>
+                <input 
+                  type="tel" 
+                  placeholder="09..." 
+                  required 
+                  style={styles.input} 
+                />
+              </div>
 
-</body>
-</html>
+              <div style={styles.formGroup}>
+                <label style={styles.label}>የጥያቄው ዓይነት</label>
+                <select style={styles.select}>
+                  <option>ትምህርተ ሃይማኖት (ዶግማ)</option>
+                  <option>ሥርዓተ ቤተክርስቲያን</option>
+                  <option>የመጽሐፍ ቅዱስ ጥናት</option>
+                  <option>ታሪክ እና ሕይወተ ቅዱሳን</option>
+                </select>
+              </div>
+
+              <div style={styles.formGroup}>
+                <label style={styles.label}>ጥያቄዎ</label>
+                <textarea 
+                  rows="4" 
+                  placeholder="ጥያቄዎን በዝርዝር እዚህ ይጻፉ..." 
+                  required 
+                  style={styles.textarea}
+                ></textarea>
+              </div>
+
+              <button type="submit" style={styles.submitButton}>
+                ጥያቄውን ላክ
+              </button>
+            </form>
+          )}
+        </section>
+
+        {/* FAQ Section */}
+        <section style={styles.card}>
+          <h2 style={styles.cardTitle}>በቅርብ የተመለሱ ጥያቄዎች</h2>
+          
+          <details style={styles.accordion}>
+            <summary style={styles.accordionHeader}>
+              ጥ፦ የጾም ዋና ዓላማና ጥቅም ምንድን ነው?
+            </summary>
+            <div style={styles.accordionBody}>
+              <p><strong>ምላሽ፦</strong> ጾም ሥጋን ለነፍስ ማሰገዛት፣ ጸሎትን ማበርታትና ለምስኪኖች መመጸፍ የሚያስችል መልካም ተግባር ነው...</p>
+              <span style={styles.badge}>በሊቃውንት የተመለሰ</span>
+            </div>
+          </details>
+
+          <details style={styles.accordion}>
+            <summary style={styles.accordionHeader}>
+              ጥ፦ በቤት ውስጥ የጸሎት ሥርዓት እንዴት መከናወን አለበት?
+            </summary>
+            <div style={styles.accordionBody}>
+              <p><strong>ምላሽ፦</strong> በጸሎት ጊዜ በሰላም፣ በትህትና እና ወደ ምሥራቅ አቅጣጫ በመዞር በንጹህ ልብ መጸለይ ይገባል...</p>
+              <span style={styles.badge}>በመልአከ ሰላም የተመለሰ</span>
+            </div>
+          </details>
+        </section>
+
+      </main>
+
+      {/* 4. Footer */}
+      <footer style={styles.footer}>
+        <p>© 2026 ቤተ-ሊቃውንት (Bete-Likawunt) :: መብቱ በሕግ የተጠበቀ ነው::</p>
+      </footer>
+    </div>
+  );
+}
+
+// Inline Styles (ለአጠቃቀም እንዲቀል)
+const styles = {
+  pageContainer: {
+    fontFamily: 'sans-serif',
+    backgroundColor: '#f4f6f8',
+    color: '#333',
+    minHeight: '100vh',
+    margin: 0,
+    direction: 'ltr'
+  },
+  header: {
+    backgroundColor: '#1b365d',
+    color: '#fff',
+    padding: '1rem 2rem',
+    display: 'flex',
+    justify-content: 'space-between',
+    alignItems: 'center',
+    boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
+  },
+  logo: {
+    fontSize: '1.5rem',
+    fontWeight: 'bold'
+  },
+  searchInput: {
+    padding: '0.6rem 1rem',
+    borderRadius: '20px',
+    border: 'none',
+    width: '250px',
+    outline: 'none'
+  },
+  hero: {
+    backgroundColor: '#0f2342',
+    color: '#fff',
+    textAlign: 'center',
+    padding: '3rem 1rem'
+  },
+  heroTitle: {
+    margin: 0,
+    fontSize: '2rem'
+  },
+  heroSubtitle: {
+    color: '#ccc',
+    marginTop: '0.5rem'
+  },
+  callButton: {
+    display: 'inline-block',
+    marginTop: '1.5rem',
+    backgroundColor: '#c5a059',
+    color: '#fff',
+    padding: '0.8rem 2rem',
+    borderRadius: '30px',
+    textDecoration: 'none',
+    fontWeight: 'bold',
+    fontSize: '1.1rem'
+  },
+  container: {
+    maxWidth: '800px',
+    margin: '2rem auto',
+    padding: '0 1rem'
+  },
+  card: {
+    backgroundColor: '#fff',
+    borderRadius: '10px',
+    padding: '2rem',
+    marginBottom: '2rem',
+    boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
+  },
+  cardTitle: {
+    marginTop: 0,
+    color: '#1b365d',
+    borderBottom: '2px solid #f4f6f8',
+    paddingBottom: '0.5rem'
+  },
+  formGroup: {
+    marginBottom: '1.2rem'
+  },
+  label: {
+    display: 'block',
+    marginBottom: '0.4rem',
+    fontWeight: '600'
+  },
+  input: {
+    width: '100%',
+    padding: '0.7rem',
+    borderRadius: '5px',
+    border: '1px solid #ccc',
+    boxSizing: 'border-box'
+  },
+  select: {
+    width: '100%',
+    padding: '0.7rem',
+    borderRadius: '5px',
+    border: '1px solid #ccc',
+    boxSizing: 'border-box'
+  },
+  textarea: {
+    width: '100%',
+    padding: '0.7rem',
+    borderRadius: '5px',
+    border: '1px solid #ccc',
+    boxSizing: 'border-box'
+  },
+  submitButton: {
+    width: '100%',
+    padding: '0.8rem',
+    backgroundColor: '#1b365d',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '5px',
+    fontSize: '1rem',
+    cursor: 'pointer'
+  },
+  successMessage: {
+    backgroundColor: '#d4edda',
+    color: '#155724',
+    padding: '1rem',
+    borderRadius: '5px',
+    textAlign: 'center'
+  },
+  accordion: {
+    borderBottom: '1px solid #eee',
+    padding: '0.8rem 0',
+    cursor: 'pointer'
+  },
+  accordionHeader: {
+    fontWeight: 'bold',
+    color: '#333'
+  },
+  accordionBody: {
+    marginTop: '0.5rem',
+    color: '#555',
+    lineHeight: '1.5'
+  },
+  badge: {
+    fontSize: '0.8rem',
+    backgroundColor: '#f0f0f0',
+    padding: '0.2rem 0.5rem',
+    borderRadius: '3px',
+    color: '#666'
+  },
+  footer: {
+    textAlign: 'center',
+    padding: '1.5rem',
+    backgroundColor: '#111',
+    color: '#aaa',
+    fontSize: '0.9rem'
+  }
+};
