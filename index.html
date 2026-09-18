@@ -1,317 +1,151 @@
 <!DOCTYPE html>
 <html lang="am">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ቤተ ሊቃውንት - የመንፈሳዊ ጥያቄና መልስ የጥሪ ማዕከል።">
+<title>ቤተ ሊቃውንት | Bete Liqawnt</title>
 
-  <title>Bete Liqawnt</title>
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+html{
+  scroll-behavior:smooth;
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+body{
+  font-family:Arial,"Noto Sans Ethiopic",sans-serif;
+  background:#fbf8ef;
+  color:#2d261e;
+  line-height:1.7;
+}
 
-    body {
-      font-family: Arial, "Noto Sans Ethiopic", sans-serif;
-      background: #f5f7fb;
-      color: #172033;
-      line-height: 1.6;
-    }
+a{
+  text-decoration:none;
+}
 
-    header {
-      background: linear-gradient(135deg, #111827, #1e3a5f);
-      color: white;
-      text-align: center;
-      padding: 55px 20px;
-    }
+header{
+  background:#fffdf8;
+  border-bottom:1px solid #e5dcc8;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
 
-    header h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
-    }
+.header-inner{
+  max-width:1100px;
+  margin:auto;
+  padding:14px 18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
 
-    header p {
-      font-size: 18px;
-      opacity: 0.9;
-    }
+.logo{
+  font-size:22px;
+  font-weight:900;
+  color:#2d261e;
+}
 
-    nav {
-      background: white;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-    }
+.logo small{
+  display:block;
+  font-size:10px;
+  letter-spacing:3px;
+  color:#a67c2f;
+}
 
-    .nav-inner {
-      max-width: 1100px;
-      margin: auto;
-      padding: 18px 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 35px;
-    }
+.lang{
+  background:#f3ead5;
+  color:#79591f;
+  border:1px solid #ddcda8;
+  padding:9px 13px;
+  border-radius:10px;
+  font-weight:bold;
+}
 
-    nav a {
-      color: #172033;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 16px;
-    }
+nav{
+  background:#fff;
+  border-bottom:1px solid #e8dfcc;
+  overflow-x:auto;
+}
 
-    nav a:hover {
-      color: #2563eb;
-    }
+.nav-inner{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  padding:8px 12px;
+}
 
-    .hero {
-      max-width: 1100px;
-      margin: auto;
-      padding: 90px 20px;
-      text-align: center;
-    }
+nav a{
+  white-space:nowrap;
+  padding:8px 12px;
+  border-radius:9px;
+  color:#3d352b;
+  font-size:14px;
+  font-weight:bold;
+}
 
-    .hero h2 {
-      font-size: 48px;
-      margin-bottom: 20px;
-    }
+nav a:hover{
+  background:#f3ead5;
+  color:#79591f;
+}
 
-    .hero p {
-      max-width: 750px;
-      margin: 0 auto 30px;
-      color: #5b6472;
-      font-size: 20px;
-    }
+.hero{
+  text-align:center;
+  padding:65px 18px 45px;
+  max-width:1000px;
+  margin:auto;
+}
 
-    .button {
-      display: inline-block;
-      background: #2563eb;
-      color: white;
-      text-decoration: none;
-      padding: 15px 32px;
-      border-radius: 10px;
-      font-weight: bold;
-      transition: 0.2s;
-    }
+.cross{
+  width:65px;
+  height:65px;
+  margin:auto;
+  margin-bottom:20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-radius:14px;
+  background:linear-gradient(145deg,#7020bd,#4b128e);
+  color:white;
+  font-size:45px;
+  box-shadow:0 8px 20px #d8cbe7;
+}
 
-    .button:hover {
-      background: #1d4ed8;
-      transform: translateY(-2px);
-    }
+.hero h1{
+  font-size:clamp(35px,8vw,55px);
+  margin-bottom:8px;
+}
 
-    .section {
-      max-width: 1100px;
-      margin: auto;
-      padding: 70px 20px;
-    }
+.hero h2{
+  color:#9a7127;
+  font-size:clamp(18px,4vw,24px);
+  margin-bottom:12px;
+}
 
-    .section-title {
-      text-align: center;
-      font-size: 34px;
-      margin-bottom: 40px;
-    }
+.hero p{
+  max-width:760px;
+  margin:auto;
+  color:#6c655d;
+  font-size:17px;
+}
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-    }
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:28px;
+}
 
-    .card {
-      background: white;
-      padding: 35px 25px;
-      border-radius: 16px;
-      text-align: center;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    }
-
-    .card h3 {
-      font-size: 23px;
-      margin-bottom: 15px;
-    }
-
-    .card p {
-      color: #626b78;
-    }
-
-    .about {
-      background: white;
-      border-radius: 18px;
-      padding: 40px;
-      text-align: center;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.06);
-    }
-
-    .about p {
-      max-width: 800px;
-      margin: auto;
-      color: #5f6875;
-      font-size: 18px;
-    }
-
-    .contact-box {
-      text-align: center;
-      background: #111827;
-      color: white;
-      padding: 50px 25px;
-      border-radius: 18px;
-    }
-
-    .contact-box p {
-      margin: 15px 0 25px;
-      opacity: 0.85;
-    }
-
-    footer {
-      background: #111827;
-      color: white;
-      text-align: center;
-      padding: 28px 20px;
-      margin-top: 30px;
-    }
-
-    @media (max-width: 700px) {
-      header h1 {
-        font-size: 32px;
-      }
-
-      .hero {
-        padding: 65px 20px;
-      }
-
-      .hero h2 {
-        font-size: 34px;
-      }
-
-      .hero p {
-        font-size: 17px;
-      }
-
-      .nav-inner {
-        gap: 16px;
-        flex-wrap: wrap;
-        padding: 14px 10px;
-      }
-
-      nav a {
-        font-size: 14px;
-      }
-
-      .cards {
-        grid-template-columns: 1fr;
-      }
-
-      .section-title {
-        font-size: 28px;
-      }
-
-      .about {
-        padding: 28px 20px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <header>
-    <h1>Bete Liqawnt</h1>
-    <p>Welcome to our website</p>
-  </header>
-
-  <nav>
-    <div class="nav-inner">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
-
-  <main>
-
-    <section class="hero" id="home">
-      <h2>Welcome to Bete Liqawnt</h2>
-
-      <p>
-        Discover Bete Liqawnt — a simple, modern and easy-to-use
-        online experience designed to provide useful information
-        and services.
-      </p>
-
-      <a href="#services" class="button">Get Started</a>
-    </section>
-
-    <section class="section" id="services">
-      <h2 class="section-title">Our Services</h2>
-
-      <div class="cards">
-
-        <div class="card">
-          <h3>Our Services</h3>
-          <p>
-            Discover the services and information available
-            through Bete Liqawnt.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Information</h3>
-          <p>
-            Find useful information and explore what
-            Bete Liqawnt has to offer.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Support</h3>
-          <p>
-            We are here to help you learn more and
-            get in touch with us.
-          </p>
-        </div>
-
-      </div>
-    </section>
-
-    <section class="section" id="about">
-      <h2 class="section-title">About Us</h2>
-
-      <div class="about">
-        <p>
-          Bete Liqawnt is focused on creating a clear,
-          modern and user-friendly online experience.
-          Explore our website to learn more about us,
-          our services and how to contact us.
-        </p>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="contact-box">
-        <h2>Contact Us</h2>
-
-        <p>
-          Get in touch with us for more information.
-        </p>
-
-        <a href="mailto:info@beteliqawnt.com" class="button">
-          Contact Us
-        </a>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <p>© 2026 Bete Liqawnt. All rights reserved.</p>
-  </footer>
-
-</body>
-</html>
+.btn{
+  display:inline-block;
+  padding:14px 24px;
+  border-radius:12px;
+  font-weight:
