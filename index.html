@@ -1,151 +1,98 @@
 <!DOCTYPE html>
 <html lang="am">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="ቤተ ሊቃውንት - የመንፈሳዊ ጥያቄና መልስ የጥሪ ማዕከል።">
-<title>ቤተ ሊቃውንት | Bete Liqawnt</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+  <meta
+    name="description"
+    content="ቤተ ሊቃውንት - የመንፈሳዊ ጥያቄና መልስ የጥሪ ማዕከል።"
+  >
 
-html{
-  scroll-behavior:smooth;
-}
+  <title>ቤተ ሊቃውንት | Bete Liqawnt</title>
 
-body{
-  font-family:Arial,"Noto Sans Ethiopic",sans-serif;
-  background:#fbf8ef;
-  color:#2d261e;
-  line-height:1.7;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-a{
-  text-decoration:none;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-header{
-  background:#fffdf8;
-  border-bottom:1px solid #e5dcc8;
-  position:sticky;
-  top:0;
-  z-index:1000;
-}
+    body {
+      font-family:
+        Arial,
+        "Noto Sans Ethiopic",
+        "Abyssinica SIL",
+        sans-serif;
+      background: #fbf8ef;
+      color: #2d261e;
+      line-height: 1.7;
+    }
 
-.header-inner{
-  max-width:1100px;
-  margin:auto;
-  padding:14px 18px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-.logo{
-  font-size:22px;
-  font-weight:900;
-  color:#2d261e;
-}
+    button {
+      font-family: inherit;
+    }
 
-.logo small{
-  display:block;
-  font-size:10px;
-  letter-spacing:3px;
-  color:#a67c2f;
-}
+    /* =========================
+       HEADER
+    ========================= */
 
-.lang{
-  background:#f3ead5;
-  color:#79591f;
-  border:1px solid #ddcda8;
-  padding:9px 13px;
-  border-radius:10px;
-  font-weight:bold;
-}
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 253, 248, 0.96);
+      border-bottom: 1px solid #e5dcc8;
+      backdrop-filter: blur(10px);
+    }
 
-nav{
-  background:#fff;
-  border-bottom:1px solid #e8dfcc;
-  overflow-x:auto;
-}
+    .header-inner {
+      max-width: 1100px;
+      margin: auto;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
 
-.nav-inner{
-  max-width:1100px;
-  margin:auto;
-  display:flex;
-  justify-content:center;
-  gap:8px;
-  padding:8px 12px;
-}
+    .logo {
+      font-size: 22px;
+      font-weight: 900;
+      color: #2d261e;
+      line-height: 1.2;
+    }
 
-nav a{
-  white-space:nowrap;
-  padding:8px 12px;
-  border-radius:9px;
-  color:#3d352b;
-  font-size:14px;
-  font-weight:bold;
-}
+    .logo small {
+      display: block;
+      margin-top: 3px;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: #a67c2f;
+    }
 
-nav a:hover{
-  background:#f3ead5;
-  color:#79591f;
-}
+    .language-btn {
+      border: 1px solid #ddcda8;
+      background: #f3ead5;
+      color: #79591f;
+      padding: 9px 13px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-.hero{
-  text-align:center;
-  padding:65px 18px 45px;
-  max-width:1000px;
-  margin:auto;
-}
+    /* =========================
+       NAVIGATION
+    ========================= */
 
-.cross{
-  width:65px;
-  height:65px;
-  margin:auto;
-  margin-bottom:20px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  border-radius:14px;
-  background:linear-gradient(145deg,#7020bd,#4b128e);
-  color:white;
-  font-size:45px;
-  box-shadow:0 8px 20px #d8cbe7;
-}
-
-.hero h1{
-  font-size:clamp(35px,8vw,55px);
-  margin-bottom:8px;
-}
-
-.hero h2{
-  color:#9a7127;
-  font-size:clamp(18px,4vw,24px);
-  margin-bottom:12px;
-}
-
-.hero p{
-  max-width:760px;
-  margin:auto;
-  color:#6c655d;
-  font-size:17px;
-}
-
-.buttons{
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top:28px;
-}
-
-.btn{
-  display:inline-block;
-  padding:14px 24px;
-  border-radius:12px;
-  font-weight:
+    nav {
+      background
