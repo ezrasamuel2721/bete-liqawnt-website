@@ -21,8 +21,8 @@ html{
 
 body{
   font-family:Arial,"Noto Sans Ethiopic",sans-serif;
-  background:#f5f7fa;
-  color:#172033;
+  background:#f7f3e9;
+  color:#24352b;
   line-height:1.7;
 }
 
@@ -37,11 +37,11 @@ a{
 
 /* HEADER */
 header{
-  background:#fff;
+  background:#fffdf7;
   position:sticky;
   top:0;
   z-index:1000;
-  border-bottom:1px solid #e5e7eb;
+  border-bottom:2px solid #c9a227;
 }
 
 .nav{
@@ -52,13 +52,13 @@ header{
 }
 
 .logo{
-  color:#173b6c;
+  color:#164734;
   font-size:22px;
   font-weight:800;
 }
 
 .logo span{
-  color:#b27a24;
+  color:#b08a24;
 }
 
 nav{
@@ -68,22 +68,22 @@ nav{
 }
 
 nav a{
-  color:#374151;
+  color:#34483b;
   font-weight:600;
 }
 
 nav a:hover{
-  color:#b27a24;
+  color:#a67c17;
 }
 
 .lang-btn{
-  border:1px solid #d5dbe5;
-  background:#fff;
+  border:1px solid #c9a227;
+  background:#fffdf7;
   padding:8px 13px;
   border-radius:8px;
   cursor:pointer;
   font-weight:bold;
-  color:#173b6c;
+  color:#164734;
 }
 
 .menu-btn{
@@ -96,25 +96,60 @@ nav a:hover{
 
 /* HERO */
 .hero{
-  background:linear-gradient(135deg,#173b6c,#24558f,#b27a24);
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at top,#386b52 0,#1d513a 45%,#12372a 100%);
   color:white;
   text-align:center;
-  padding:80px 15px;
+  padding:85px 15px;
+}
+
+.hero:before,
+.hero:after{
+  content:"✝";
+  position:absolute;
+  color:rgba(201,162,39,.12);
+  font-size:180px;
+  font-weight:bold;
+}
+
+.hero:before{
+  left:5%;
+  top:10%;
+}
+
+.hero:after{
+  right:5%;
+  bottom:0;
 }
 
 .hero-logo{
-  width:110px;
-  height:110px;
+  position:relative;
+  z-index:1;
+  width:115px;
+  height:115px;
   margin:0 auto 20px;
   border-radius:50%;
-  background:white;
+  background:#fffdf7;
   display:flex;
   align-items:center;
   justify-content:center;
-  color:#173b6c;
-  font-size:42px;
+  color:#164734;
+  font-size:48px;
   font-weight:bold;
-  box-shadow:0 8px 25px rgba(0,0,0,.18);
+  border:5px solid #c9a227;
+  box-shadow:0 8px 30px rgba(0,0,0,.25);
+}
+
+.hero-church,
+.hero-name,
+.hero-subtitle,
+.hero h1,
+.hero-text,
+.hero .btn{
+  position:relative;
+  z-index:1;
 }
 
 .hero-church{
@@ -124,8 +159,9 @@ nav a:hover{
 }
 
 .hero-name{
-  font-size:42px;
+  font-size:44px;
   font-weight:900;
+  color:#f2d77a;
   margin-bottom:5px;
 }
 
@@ -148,13 +184,17 @@ nav a:hover{
 .btn{
   display:inline-block;
   margin-top:25px;
-  padding:13px 22px;
+  padding:13px 24px;
   border-radius:9px;
-  background:white;
-  color:#173b6c;
+  background:#f2d77a;
+  color:#173d2d;
   font-weight:bold;
-  border:0;
+  border:2px solid #c9a227;
   cursor:pointer;
+}
+
+.btn:hover{
+  background:#fff1b0;
 }
 
 /* SECTIONS */
@@ -168,20 +208,30 @@ section{
 }
 
 .section-title h2{
-  color:#173b6c;
+  color:#164734;
   font-size:32px;
+  position:relative;
+  display:inline-block;
+}
+
+.section-title h2:after{
+  content:"✦";
+  display:block;
+  color:#c9a227;
+  font-size:18px;
 }
 
 .section-title p{
-  color:#667085;
+  color:#66756c;
 }
 
 /* ASK */
 .ask-box{
-  background:white;
+  background:#fffdf7;
   padding:30px;
   border-radius:15px;
-  box-shadow:0 5px 20px rgba(0,0,0,.06);
+  border:1px solid #dccb8b;
+  box-shadow:0 7px 25px rgba(46,60,50,.08);
   max-width:800px;
   margin:auto;
 }
@@ -190,11 +240,20 @@ section{
 .ask-box textarea{
   width:100%;
   padding:14px;
-  border:1px solid #d7dce5;
+  border:1px solid #d5c99e;
   border-radius:9px;
   margin-bottom:15px;
   font-size:16px;
   font-family:inherit;
+  background:#fffefb;
+}
+
+.ask-box input:focus,
+.ask-box textarea:focus,
+.search input:focus{
+  outline:none;
+  border-color:#b08a24;
+  box-shadow:0 0 0 3px rgba(201,162,39,.12);
 }
 
 .ask-box textarea{
@@ -207,7 +266,7 @@ section{
   padding:14px;
   border:0;
   border-radius:9px;
-  background:#173b6c;
+  background:#164734;
   color:white;
   font-size:16px;
   font-weight:bold;
@@ -215,7 +274,7 @@ section{
 }
 
 .submit-btn:hover{
-  background:#24558f;
+  background:#216046;
 }
 
 .success{
@@ -223,8 +282,8 @@ section{
   margin-top:15px;
   padding:12px;
   border-radius:8px;
-  background:#e7f6ec;
-  color:#176b36;
+  background:#e7f3e9;
+  color:#17633d;
   text-align:center;
 }
 
@@ -237,9 +296,10 @@ section{
 .search input{
   width:100%;
   padding:15px;
-  border:1px solid #d7dce5;
+  border:1px solid #d5c99e;
   border-radius:10px;
   font-size:16px;
+  background:#fffdf7;
 }
 
 /* CARDS */
@@ -250,11 +310,11 @@ section{
 }
 
 .card{
-  background:#fff;
+  background:#fffdf7;
   border-radius:14px;
   padding:25px;
-  border:1px solid #e5e7eb;
-  box-shadow:0 5px 18px rgba(0,0,0,.05);
+  border:1px solid #dccb8b;
+  box-shadow:0 5px 18px rgba(46,60,50,.06);
 }
 
 .card .icon{
@@ -262,17 +322,19 @@ section{
 }
 
 .card h3{
-  color:#173b6c;
+  color:#164734;
   margin:10px 0;
 }
 
 .card p{
-  color:#667085;
+  color:#66756c;
 }
 
 /* ABOUT */
 .about{
-  background:white;
+  background:#fffdf7;
+  border-top:1px solid #e4d8a9;
+  border-bottom:1px solid #e4d8a9;
 }
 
 .about-text{
@@ -280,7 +342,7 @@ section{
   margin:auto;
   text-align:center;
   font-size:18px;
-  color:#4b5563;
+  color:#4d5b53;
 }
 
 /* CONTACT */
@@ -291,663 +353,6 @@ section{
 }
 
 .contact-card{
-  background:white;
+  background:#fffdf7;
   padding:28px;
-  text-align:center;
-  border-radius:14px;
-  border:1px solid #e5e7eb;
-}
-
-.contact-card .icon{
-  font-size:32px;
-}
-
-.contact-card h3{
-  color:#173b6c;
-}
-
-.contact-card p{
-  color:#667085;
-}
-
-.contact-card a{
-  color:#b27a24;
-  font-weight:bold;
-  word-break:break-word;
-}
-
-/* DASHBOARD */
-.dashboard{
-  background:#eef2f7;
-}
-
-.dashboard-box{
-  background:white;
-  border-radius:15px;
-  padding:25px;
-  box-shadow:0 5px 18px rgba(0,0,0,.05);
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-  margin-bottom:25px;
-}
-
-.stat{
-  background:#f8fafc;
-  border:1px solid #e5e7eb;
-  padding:20px;
-  border-radius:12px;
-  text-align:center;
-}
-
-.stat strong{
-  display:block;
-  font-size:30px;
-  color:#173b6c;
-}
-
-.question{
-  border:1px solid #e5e7eb;
-  border-radius:12px;
-  padding:18px;
-  margin-bottom:15px;
-}
-
-.question h4{
-  color:#173b6c;
-  margin-bottom:8px;
-}
-
-.question small{
-  color:#667085;
-}
-
-.question-text{
-  margin:12px 0;
-}
-
-.delete-btn{
-  border:0;
-  background:#b42318;
-  color:white;
-  padding:8px 12px;
-  border-radius:7px;
-  cursor:pointer;
-}
-
-.empty{
-  text-align:center;
-  color:#667085;
-  padding:25px;
-}
-
-/* FOOTER */
-footer{
-  background:#122b4d;
-  color:#dce5f0;
-  text-align:center;
-  padding:28px 15px;
-}
-
-/* MOBILE */
-@media(max-width:800px){
-
-  .menu-btn{
-    display:block;
-  }
-
-  nav{
-    display:none;
-    position:absolute;
-    top:75px;
-    left:0;
-    right:0;
-    background:white;
-    padding:20px;
-    flex-direction:column;
-    align-items:stretch;
-  }
-
-  nav.active{
-    display:flex;
-  }
-
-  nav a{
-    padding:8px 0;
-  }
-
-  .hero-name{
-    font-size:34px;
-  }
-
-  .hero-church{
-    font-size:17px;
-  }
-
-  .hero-subtitle{
-    font-size:16px;
-  }
-
-  .cards,
-  .contact-grid,
-  .stats{
-    grid-template-columns:1fr;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<header>
-<div class="container nav">
-
-<a href="#home" class="logo">
-ቤተ <span>ሊቃውንት</span>
-</a>
-
-<button class="menu-btn" id="menuBtn">☰</button>
-
-<nav id="navMenu">
-<a href="#home" data-am="መነሻ" data-en="Home">መነሻ</a>
-<a href="#ask" data-am="ጥያቄ ይጠይቁ" data-en="Ask a Question">ጥያቄ ይጠይቁ</a>
-<a href="#resources" data-am="መረጃዎች" data-en="Resources">መረጃዎች</a>
-<a href="#about" data-am="ስለ እኛ" data-en="About">ስለ እኛ</a>
-<a href="#contact" data-am="ያግኙን" data-en="Contact">ያግኙን</a>
-<a href="#dashboard" data-am="Dashboard" data-en="Dashboard">Dashboard</a>
-<button class="lang-btn" id="langBtn">EN</button>
-</nav>
-
-</div>
-</header>
-
-<main>
-
-<!-- HERO -->
-<section class="hero" id="home">
-
-<div class="hero-logo">✝</div>
-
-<div class="hero-church">
-ኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን
-</div>
-
-<div class="hero-name">
-ቤተ ሊቃውንት
-</div>
-
-<div class="hero-subtitle">
-የመንፈሳዊ ጥያቄና መልስ የጥሪ ማዕከል
-</div>
-
-<h1>
-ማንኛውንም ጥያቄ ይጠይቁ
-</h1>
-
-<p class="hero-text">
-መንፈሳዊ ሕይወትዎን በእውቀት ይደግፉ።
-</p>
-
-<a href="#ask" class="btn">
-ጥያቄ ይጠይቁ
-</a>
-
-</section>
-
-<!-- ASK -->
-<section id="ask">
-
-<div class="container">
-
-<div class="section-title">
-<h2>ጥያቄ ይጠይቁ</h2>
-<p>የመንፈሳዊ ጥያቄዎን ይላኩ።</p>
-</div>
-
-<div class="ask-box">
-
-<input
-type="text"
-id="questionName"
-placeholder="ስምዎ (አማራጭ)"
->
-
-<input
-type="text"
-id="questionSubject"
-placeholder="የጥያቄው ርዕስ"
->
-
-<textarea
-id="questionText"
-placeholder="ጥያቄዎን እዚህ ይጻፉ..."
-></textarea>
-
-<button class="submit-btn" id="submitQuestion">
-ጥያቄውን ላክ
-</button>
-
-<div class="success" id="successMessage">
-ጥያቄዎ በተሳካ ሁኔታ ተቀብሏል።
-</div>
-
-</div>
-
-</div>
-</section>
-
-<!-- RESOURCES -->
-<section id="resources">
-
-<div class="container">
-
-<div class="section-title">
-<h2>የእውቀት ምንጮች</h2>
-<p>መንፈሳዊ እውቀትን በቀላሉ ይፈልጉ።</p>
-</div>
-
-<div class="search">
-<input
-type="search"
-id="searchInput"
-placeholder="መረጃ ይፈልጉ..."
->
-</div>
-
-<div class="cards" id="resourceCards">
-
-<div class="card resource">
-<div class="icon">📚</div>
-<h3>መጽሐፍት</h3>
-<p>የመንፈሳዊ እውቀት መጽሐፍትን ይፈልጉ።</p>
-</div>
-
-<div class="card resource">
-<div class="icon">📖</div>
-<h3>ጽሑፎች</h3>
-<p>ጠቃሚ መንፈሳዊ ጽሑፎችን ያንብቡ።</p>
-</div>
-
-<div class="card resource">
-<div class="icon">🔎</div>
-<h3>ጥናትና ምርምር</h3>
-<p>ለጥናትና ምርምር የሚጠቅሙ መረጃዎችን ያግኙ።</p>
-</div>
-
-</div>
-</div>
-</section>
-
-<!-- ABOUT -->
-<section class="about" id="about">
-
-<div class="container">
-
-<div class="section-title">
-<h2>ስለ ቤተ ሊቃውንት</h2>
-</div>
-
-<div class="about-text">
-<p>
-ቤተ ሊቃውንት የመንፈሳዊ ጥያቄና መልስ
-የጥሪ ማዕከል ሲሆን፣ ሰዎች የመንፈሳዊ
-ጥያቄዎቻቸውን በቀላሉ እንዲያቀርቡና
-ጠቃሚ እውቀት እንዲያገኙ የተዘጋጀ መድረክ ነው።
-</p>
-</div>
-
-</div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-
-<div class="container">
-
-<div class="section-title">
-<h2>ያግኙን</h2>
-<p>ለጥያቄ እና ለተጨማሪ መረጃ ያግኙን።</p>
-</div>
-
-<div class="contact-grid">
-
-<div class="contact-card">
-<div class="icon">☎️</div>
-<h3>ዋና የጥያቄ ቁጥር</h3>
-<p>ለጥያቄ ይደውሉ</p>
-<a href="tel:2721">2721</a>
-</div>
-
-<div class="contact-card">
-<div class="icon">📞</div>
-<h3>ስልክ</h3>
-<p>በስልክ ያግኙን</p>
-<a href="tel:0962244464">0962244464</a>
-</div>
-
-<div class="contact-card">
-<div class="icon">✉️</div>
-<h3>Email</h3>
-<p>በEmail ያግኙን</p>
-<a href="mailto:ezrasamuel@2721gmail.com">
-ezrasamuel@2721gmail.com
-</a>
-</div>
-
-</div>
-</div>
-</section>
-
-<!-- DASHBOARD -->
-<section class="dashboard" id="dashboard">
-
-<div class="container">
-
-<div class="section-title">
-<h2>Dashboard</h2>
-<p>የተላኩ ጥያቄዎችን ይመልከቱ።</p>
-</div>
-
-<div class="dashboard-box">
-
-<div class="stats">
-
-<div class="stat">
-<strong id="totalQuestions">0</strong>
-ጠቅላላ ጥያቄ
-</div>
-
-<div class="stat">
-<strong id="todayQuestions">0</strong>
-የዛሬ ጥያቄ
-</div>
-
-<div class="stat">
-<strong>2721</strong>
-የጥያቄ መስመር
-</div>
-
-</div>
-
-<div id="questionList"></div>
-
-</div>
-
-</div>
-</section>
-
-</main>
-
-<footer>
-
-<p>
-© <span id="year"></span> ቤተ ሊቃውንት
-</p>
-
-<p>
-ኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን
-</p>
-
-</footer>
-
-<script>
-
-/* MOBILE MENU */
-
-const menuBtn = document.getElementById("menuBtn");
-const navMenu = document.getElementById("navMenu");
-
-menuBtn.addEventListener("click",function(){
-  navMenu.classList.toggle("active");
-});
-
-
-/* QUESTION STORAGE */
-
-const STORAGE_KEY = "bete_likawunt_questions";
-
-function getQuestions(){
-  try{
-    return JSON.parse(
-      localStorage.getItem(STORAGE_KEY)
-    ) || [];
-  }catch(error){
-    return [];
-  }
-}
-
-function saveQuestions(questions){
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(questions)
-  );
-}
-
-
-/* SUBMIT QUESTION */
-
-document
-.getElementById("submitQuestion")
-.addEventListener("click",function(){
-
-  const name =
-    document.getElementById("questionName").value.trim();
-
-  const subject =
-    document.getElementById("questionSubject").value.trim();
-
-  const text =
-    document.getElementById("questionText").value.trim();
-
-  if(!subject || !text){
-    alert("እባክዎ የጥያቄውን ርዕስና ጥያቄ ይሙሉ።");
-    return;
-  }
-
-  const questions = getQuestions();
-
-  questions.unshift({
-    id:Date.now(),
-    name:name || "ስም አልተገለጸም",
-    subject:subject,
-    text:text,
-    date:new Date().toISOString()
-  });
-
-  saveQuestions(questions);
-
-  document.getElementById("questionName").value="";
-  document.getElementById("questionSubject").value="";
-  document.getElementById("questionText").value="";
-
-  const success =
-    document.getElementById("successMessage");
-
-  success.style.display="block";
-
-  setTimeout(function(){
-    success.style.display="none";
-  },3000);
-
-  renderDashboard();
-
-});
-
-
-/* DASHBOARD */
-
-function renderDashboard(){
-
-  const questions = getQuestions();
-
-  const list =
-    document.getElementById("questionList");
-
-  document.getElementById("totalQuestions")
-    .textContent = questions.length;
-
-  const today =
-    new Date().toDateString();
-
-  const todayCount =
-    questions.filter(function(q){
-      return new Date(q.date).toDateString() === today;
-    }).length;
-
-  document.getElementById("todayQuestions")
-    .textContent = todayCount;
-
-  if(questions.length === 0){
-
-    list.innerHTML =
-      '<div class="empty">እስካሁን ምንም ጥያቄ አልተላከም።</div>';
-
-    return;
-  }
-
-  list.innerHTML = "";
-
-  questions.forEach(function(q){
-
-    const item =
-      document.createElement("div");
-
-    item.className="question";
-
-    const date =
-      new Date(q.date).toLocaleString("am-ET");
-
-    item.innerHTML = `
-      <h4>${escapeHTML(q.subject)}</h4>
-      <small>
-        ከ: ${escapeHTML(q.name)} |
-        ${escapeHTML(date)}
-      </small>
-
-      <div class="question-text">
-        ${escapeHTML(q.text)}
-      </div>
-
-      <button
-        class="delete-btn"
-        onclick="deleteQuestion(${q.id})">
-        ሰርዝ
-      </button>
-    `;
-
-    list.appendChild(item);
-
-  });
-}
-
-
-/* DELETE QUESTION */
-
-function deleteQuestion(id){
-
-  const confirmed =
-    confirm("ይህን ጥያቄ መሰረዝ ይፈልጋሉ?");
-
-  if(!confirmed){
-    return;
-  }
-
-  const questions =
-    getQuestions().filter(function(q){
-      return q.id !== id;
-    });
-
-  saveQuestions(questions);
-
-  renderDashboard();
-}
-
-
-/* SECURITY */
-
-function escapeHTML(value){
-
-  return String(value)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-}
-
-
-/* SEARCH */
-
-document
-.getElementById("searchInput")
-.addEventListener("input",function(){
-
-  const query =
-    this.value.toLowerCase().trim();
-
-  document
-  .querySelectorAll(".resource")
-  .forEach(function(card){
-
-    const text =
-      card.textContent.toLowerCase();
-
-    card.style.display =
-      text.includes(query) ? "" : "none";
-
-  });
-
-});
-
-
-/* LANGUAGE */
-
-let language="am";
-
-document
-.getElementById("langBtn")
-.addEventListener("click",function(){
-
-  language =
-    language === "am" ? "en" : "am";
-
-  document.documentElement.lang =
-    language;
-
-  document
-  .querySelectorAll("[data-am]")
-  .forEach(function(element){
-
-    element.textContent =
-      element.getAttribute(
-        language === "am"
-        ? "data-am"
-        : "data-en"
-      );
-
-  });
-
-  this.textContent =
-    language === "am" ? "EN" : "አማ";
-
-});
-
-
-/* YEAR */
-
-document.getElementById("year")
-.textContent =
-new Date().getFullYear();
-
-
-/* INITIAL DASHBOARD */
-
-renderDashboard();
-
-</script>
-
-</body>
-</html>
+  text-align:center
