@@ -1,274 +1,108 @@
-import React, { useState } from 'react';
+<!DOCTYPE html>
+<html lang="am">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ቤተ ሊቃውንት - የእውቀት፣ የትምህርት እና የጥያቄ መድረክ">
+<title>ቤተ ሊቃውንት</title>
+<style>
+:root{--g:#173b2b;--gd:#0d261b;--gold:#c99b3b;--cream:#fbf8f0;--text:#25302a;--muted:#66736b;--border:#e8e2d5;--shadow:0 12px 35px rgba(23,59,43,.10)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,"Noto Sans Ethiopic",sans-serif;background:var(--cream);color:var(--text);line-height:1.75}
+button,input,select,textarea{font:inherit}
+.topbar{background:var(--gd);color:#fff;text-align:center;font-size:14px;padding:8px 16px}
+header{background:linear-gradient(135deg,var(--g),#24543d);color:#fff}
+.header-inner{width:min(1120px,92%);margin:auto;padding:28px 0 24px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:14px}.brand-mark{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;background:rgba(255,255,255,.12);font-size:28px}
+.brand h1{font-size:30px;line-height:1.2}.brand p{color:#ead9a5;font-size:14px}
+nav{background:rgba(13,38,27,.92)}.nav-inner{width:min(1120px,92%);margin:auto;display:flex;justify-content:center;flex-wrap:wrap;gap:6px}
+nav a{display:inline-block;color:#fff;text-decoration:none;padding:12px 16px;border-radius:8px;font-weight:700}
+nav a:hover{background:rgba(255,255,255,.12);color:#f2d78e}
+.hero{background:linear-gradient(135deg,#f1e3bb,#fbf8f0 58%,#e8f0e9);border-bottom:1px solid var(--border)}
+.hero-inner{width:min(1120px,92%);margin:auto;min-height:440px;display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:48px;padding:70px 0}
+.hero h2{color:var(--g);font-size:clamp(32px,5vw,54px);line-height:1.2;margin-bottom:18px}.hero h2 span{color:#9a7020}
+.hero p{font-size:18px;color:#526057;max-width:650px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-block;text-decoration:none;border-radius:10px;padding:12px 20px;font-weight:700;border:1px solid transparent;transition:.2s}
+.btn-primary{background:var(--g);color:#fff}.btn-primary:hover{background:var(--gd)}
+.btn-secondary{background:#fff;color:var(--g);border-color:#d8d1c2}
+.hero-card{background:rgba(255,255,255,.86);border:1px solid rgba(23,59,43,.1);border-radius:22px;padding:30px;box-shadow:var(--shadow);text-align:center}
+.hero-icon{font-size:58px}.hero-card h3{color:var(--g);font-size:22px}
+section{padding:68px 0}.container{width:min(1120px,92%);margin:auto}
+.section-head{text-align:center;max-width:720px;margin:0 auto 34px}.section-head h2{color:var(--g);font-size:32px;margin-bottom:8px}.section-head p{color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px;box-shadow:0 7px 22px rgba(23,59,43,.06);transition:.2s}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.card-icon{width:50px;height:50px;border-radius:13px;display:grid;place-items:center;background:#f4ead0;color:var(--g);font-size:25px;margin-bottom:16px}
+.card h3{color:var(--g);font-size:20px;margin-bottom:8px}.card p{color:var(--muted);font-size:15px}
+.highlight{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.quote{max-width:850px;margin:auto;text-align:center;padding:34px;border-left:5px solid var(--gold);background:#fffdf8;border-radius:12px;box-shadow:0 8px 25px rgba(0,0,0,.05)}
+.quote .mark{font-size:38px;color:var(--gold)}.quote h3{color:var(--g);font-size:24px;margin:10px 0}
+.form-wrap{max-width:760px;margin:auto;background:#fff;border:1px solid var(--border);border-radius:18px;padding:30px;box-shadow:var(--shadow)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}
+label{font-weight:700;color:var(--g)}
+input,select,textarea{width:100%;border:1px solid #d9d4c8;border-radius:9px;padding:12px 13px;background:#fff;color:var(--text);outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--g);box-shadow:0 0 0 3px rgba(23,59,43,.08)}
+textarea{min-height:130px;resize:vertical}.form-submit{margin-top:20px;border:0;cursor:pointer}
+.faq{max-width:850px;margin:auto;display:grid;gap:12px}details{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+summary{cursor:pointer;font-weight:700;color:var(--g)}details p{color:var(--muted);margin-top:10px}
+footer{background:var(--gd);color:#fff;padding:36px 0 20px}.footer-grid{width:min(1120px,92%);margin:auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+footer h3{color:#f0d58e;margin-bottom:10px}footer p,footer a{color:#d7ded9;font-size:14px}footer a{text-decoration:none}
+.copyright{width:min(1120px,92%);margin:28px auto 0;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);text-align:center;color:#aeb9b2;font-size:13px}
+@media(max-width:850px){.header-inner{flex-direction:column;text-align:center}.hero-inner{grid-template-columns:1fr;text-align:center;padding:55px 0}.hero p{margin:auto}.actions{justify-content:center}.cards{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.topbar{font-size:12px}.brand h1{font-size:25px}nav a{padding:10px 9px;font-size:14px}.hero-inner{padding:42px 0}.hero h2{font-size:34px}.hero p{font-size:16px}section{padding:48px 0}.section-head h2{font-size:27px}.cards{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.form-wrap{padding:20px}.footer-grid{grid-template-columns:1fr;text-align:center}}
+</style>
+</head>
+<body>
+<div class="topbar">የእውቀትና የትምህርት መድረክ • ቤተ ሊቃውንት</div>
+<header>
+<div class="header-inner">
+<div class="brand"><div class="brand-mark">📚</div><div><h1>ቤተ ሊቃውንት</h1><p>እውቀትን ለሁሉም</p></div></div>
+<a class="btn btn-secondary" href="#question">ጥያቄ ያቅርቡ</a>
+</div>
+<nav><div class="nav-inner"><a href="#home">መነሻ</a><a href="#about">ስለ እኛ</a><a href="#services">አገልግሎቶች</a><a href="#question">ጥያቄ ያቅርቡ</a><a href="#faq">FAQ</a></div></nav>
+</header>
+<main>
+<section class="hero" id="home"><div class="hero-inner"><div>
+<h2>የእውቀት ጉዞዎን <span>ከዚህ ይጀምሩ</span></h2>
+<p>ቤተ ሊቃውንት ጥያቄዎችን ለመጠየቅ፣ እውቀትን ለመፈለግ እና ጠቃሚ መረጃዎችን በቀላሉ ለማግኘት የተዘጋጀ የእውቀት መድረክ ነው።</p>
+<div class="actions"><a class="btn btn-primary" href="#question">ጥያቄ ያቅርቡ</a><a class="btn btn-secondary" href="#services">አገልግሎቶችን ይመልከቱ</a></div>
+</div><div class="hero-card"><div class="hero-icon">🏛️</div><h3>የእውቀት ቤት</h3><p>በቀላል፣ በግልጽ እና በዘመናዊ መልኩ እውቀትን እንድትፈልጉ የተዘጋጀ።</p></div></div></section>
 
-export default function BeteLikawunt() {
-  const [submitted, setSubmitted] = useState(false);
+<section id="about"><div class="container"><div class="section-head"><h2>ስለ ቤተ ሊቃውንት</h2><p>ዓላማችን ጠቃሚ እውቀትን በቀላሉ ተደራሽ ማድረግ ነው።</p></div>
+<div class="cards">
+<article class="card"><div class="card-icon">💡</div><h3>እውቀት</h3><p>የተለያዩ ጉዳዮችን በግልጽ መልኩ ለመረዳት የሚረዱ መረጃዎችን እናቀርባለን።</p></article>
+<article class="card"><div class="card-icon">🔎</div><h3>ፍለጋ</h3><p>የሚያስፈልግዎትን መረጃ በቀላሉ እንዲፈልጉና እንዲያገኙ የተደራጀ መድረክ።</p></article>
+<article class="card"><div class="card-icon">🤝</div><h3>ተሳትፎ</h3><p>ጥያቄዎን ያቅርቡ፤ እውቀትን እንድንለዋወጥ አስተዋፅኦ ያድርጉ።</p></article>
+</div></div></section>
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+<section class="highlight" id="services"><div class="container"><div class="section-head"><h2>ዋና አገልግሎቶች</h2><p>በአንድ ቦታ የተደራጀ እና ለመጠቀም ቀላል መድረክ።</p></div>
+<div class="cards">
+<article class="card"><div class="card-icon">📖</div><h3>የእውቀት ምንጮች</h3><p>ትምህርታዊና ጠቃሚ ርዕሶችን ለማግኘት የተዘጋጀ ክፍል።</p></article>
+<article class="card"><div class="card-icon">❓</div><h3>ጥያቄ እና መልስ</h3><p>የሚፈልጉትን ጥያቄ በቀጥታ ያቅርቡ።</p></article>
+<article class="card"><div class="card-icon">📝</div><h3>አስተያየት</h3><p>የድረ-ገጹን አጠቃቀም ለማሻሻል አስተያየትዎን ያካፍሉ።</p></article>
+</div></div></section>
 
-  return (
-    <div style={styles.pageContainer}>
-      {/* 1. Header & Navigation */}
-      <header style={styles.header}>
-        <div style={styles.logo}>ቤተ-ሊቃውንት</div>
-        <div style={styles.searchBox}>
-          <input 
-            type="text" 
-            placeholder="ጥያቄዎችን እዚህ ይፈልጉ..." 
-            style={styles.searchInput}
-          />
-        </div>
-      </header>
+<section><div class="container"><div class="quote"><div class="mark">“</div><h3>ዛሬ የሚማሩት ነገን ይገነባል</h3><p>እውቀት ሲጋራ ይበዛል፤ ትምህርት ሲተገበር ውጤት ይሆናል።</p></div></div></section>
 
-      {/* 2. Hero Section (Call 2721) */}
-      <section style={styles.hero}>
-        <h1 style={styles.heroTitle}>የመንፈሳዊ ጥያቄዎችዎ ምላሽ ማግኛ</h1>
-        <p style={styles.heroSubtitle}>ከሃይማኖት አባቶችና ከሊቃውንት ጋር በቀጥታ ይገናኙ</p>
-        <a href="tel:2721" style={styles.callButton}>
-          📞 አሁኑኑ ይደውሉ፡ 2721
-        </a>
-      </section>
+<section id="question" class="highlight"><div class="container"><div class="section-head"><h2>ጥያቄ ያቅርቡ</h2><p>የሚፈልጉትን ጥያቄ በቀላሉ ይጻፉ።</p></div>
+<div class="form-wrap"><form onsubmit="event.preventDefault();document.getElementById('formMessage').textContent='ጥያቄዎ ተቀብለናል። እናመሰግናለን!';">
+<div class="form-grid">
+<div class="field"><label for="name">ስም</label><input id="name" type="text" placeholder="ስምዎን ያስገቡ" required></div>
+<div class="field"><label for="phone">ስልክ ቁጥር</label><input id="phone" type="tel" placeholder="0911..."></div>
+<div class="field full"><label for="topic">የጥያቄ ርዕስ</label><select id="topic"><option>ትምህርት</option><option>መጽሐፍትና ንባብ</option><option>ታሪክ</option><option>ሌላ</option></select></div>
+<div class="field full"><label for="questionText">ጥያቄዎ</label><textarea id="questionText" placeholder="ጥያቄዎን እዚህ ይጻፉ..." required></textarea></div>
+</div><button class="btn btn-primary form-submit" type="submit">ጥያቄውን ላክ</button><p id="formMessage" style="margin-top:14px;color:#173b2b;font-weight:700"></p>
+</form></div></div></section>
 
-      {/* 3. Main Content Container */}
-      <main style={styles.container}>
-        
-        {/* Form Section */}
-        <section style={styles.card}>
-          <h2 style={styles.cardTitle}>በጽሁፍ ጥያቄ ለማስገባት</h2>
-          {submitted ? (
-            <div style={styles.successMessage}>
-              ጥያቄዎ በጥሩ ሁኔታ ተልኳል! አባቶች ምላሹን በቅርቡ ይሰጡበታል።
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} style={styles.form}>
-              <div style={styles.formGroup}>
-                <label style={styles.label}>ስም (አማራጭ)</label>
-                <input 
-                  type="text" 
-                  placeholder="ስምዎን ያስገቡ" 
-                  style={styles.input} 
-                />
-              </div>
-
-              <div style={styles.formGroup}>
-                <label style={styles.label}>ስልክ ቁጥር (ምስጢርነቱ የተጠበቀ ነው)</label>
-                <input 
-                  type="tel" 
-                  placeholder="09..." 
-                  required 
-                  style={styles.input} 
-                />
-              </div>
-
-              <div style={styles.formGroup}>
-                <label style={styles.label}>የጥያቄው ዓይነት</label>
-                <select style={styles.select}>
-                  <option>ትምህርተ ሃይማኖት (ዶግማ)</option>
-                  <option>ሥርዓተ ቤተክርስቲያን</option>
-                  <option>የመጽሐፍ ቅዱስ ጥናት</option>
-                  <option>ታሪክ እና ሕይወተ ቅዱሳን</option>
-                </select>
-              </div>
-
-              <div style={styles.formGroup}>
-                <label style={styles.label}>ጥያቄዎ</label>
-                <textarea 
-                  rows="4" 
-                  placeholder="ጥያቄዎን በዝርዝር እዚህ ይጻፉ..." 
-                  required 
-                  style={styles.textarea}
-                ></textarea>
-              </div>
-
-              <button type="submit" style={styles.submitButton}>
-                ጥያቄውን ላክ
-              </button>
-            </form>
-          )}
-        </section>
-
-        {/* FAQ Section */}
-        <section style={styles.card}>
-          <h2 style={styles.cardTitle}>በቅርብ የተመለሱ ጥያቄዎች</h2>
-          
-          <details style={styles.accordion}>
-            <summary style={styles.accordionHeader}>
-              ጥ፦ የጾም ዋና ዓላማና ጥቅም ምንድን ነው?
-            </summary>
-            <div style={styles.accordionBody}>
-              <p><strong>ምላሽ፦</strong> ጾም ሥጋን ለነፍስ ማሰገዛት፣ ጸሎትን ማበርታትና ለምስኪኖች መመጸፍ የሚያስችል መልካም ተግባር ነው...</p>
-              <span style={styles.badge}>በሊቃውንት የተመለሰ</span>
-            </div>
-          </details>
-
-          <details style={styles.accordion}>
-            <summary style={styles.accordionHeader}>
-              ጥ፦ በቤት ውስጥ የጸሎት ሥርዓት እንዴት መከናወን አለበት?
-            </summary>
-            <div style={styles.accordionBody}>
-              <p><strong>ምላሽ፦</strong> በጸሎት ጊዜ በሰላም፣ በትህትና እና ወደ ምሥራቅ አቅጣጫ በመዞር በንጹህ ልብ መጸለይ ይገባል...</p>
-              <span style={styles.badge}>በመልአከ ሰላም የተመለሰ</span>
-            </div>
-          </details>
-        </section>
-
-      </main>
-
-      {/* 4. Footer */}
-      <footer style={styles.footer}>
-        <p>© 2026 ቤተ-ሊቃውንት (Bete-Likawunt) :: መብቱ በሕግ የተጠበቀ ነው::</p>
-      </footer>
-    </div>
-  );
-}
-
-// Inline Styles (ለአጠቃቀም እንዲቀል)
-const styles = {
-  pageContainer: {
-    fontFamily: 'sans-serif',
-    backgroundColor: '#f4f6f8',
-    color: '#333',
-    minHeight: '100vh',
-    margin: 0,
-    direction: 'ltr'
-  },
-  header: {
-    backgroundColor: '#1b365d',
-    color: '#fff',
-    padding: '1rem 2rem',
-    display: 'flex',
-    justify-content: 'space-between',
-    alignItems: 'center',
-    boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
-  },
-  logo: {
-    fontSize: '1.5rem',
-    fontWeight: 'bold'
-  },
-  searchInput: {
-    padding: '0.6rem 1rem',
-    borderRadius: '20px',
-    border: 'none',
-    width: '250px',
-    outline: 'none'
-  },
-  hero: {
-    backgroundColor: '#0f2342',
-    color: '#fff',
-    textAlign: 'center',
-    padding: '3rem 1rem'
-  },
-  heroTitle: {
-    margin: 0,
-    fontSize: '2rem'
-  },
-  heroSubtitle: {
-    color: '#ccc',
-    marginTop: '0.5rem'
-  },
-  callButton: {
-    display: 'inline-block',
-    marginTop: '1.5rem',
-    backgroundColor: '#c5a059',
-    color: '#fff',
-    padding: '0.8rem 2rem',
-    borderRadius: '30px',
-    textDecoration: 'none',
-    fontWeight: 'bold',
-    fontSize: '1.1rem'
-  },
-  container: {
-    maxWidth: '800px',
-    margin: '2rem auto',
-    padding: '0 1rem'
-  },
-  card: {
-    backgroundColor: '#fff',
-    borderRadius: '10px',
-    padding: '2rem',
-    marginBottom: '2rem',
-    boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
-  },
-  cardTitle: {
-    marginTop: 0,
-    color: '#1b365d',
-    borderBottom: '2px solid #f4f6f8',
-    paddingBottom: '0.5rem'
-  },
-  formGroup: {
-    marginBottom: '1.2rem'
-  },
-  label: {
-    display: 'block',
-    marginBottom: '0.4rem',
-    fontWeight: '600'
-  },
-  input: {
-    width: '100%',
-    padding: '0.7rem',
-    borderRadius: '5px',
-    border: '1px solid #ccc',
-    boxSizing: 'border-box'
-  },
-  select: {
-    width: '100%',
-    padding: '0.7rem',
-    borderRadius: '5px',
-    border: '1px solid #ccc',
-    boxSizing: 'border-box'
-  },
-  textarea: {
-    width: '100%',
-    padding: '0.7rem',
-    borderRadius: '5px',
-    border: '1px solid #ccc',
-    boxSizing: 'border-box'
-  },
-  submitButton: {
-    width: '100%',
-    padding: '0.8rem',
-    backgroundColor: '#1b365d',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '5px',
-    fontSize: '1rem',
-    cursor: 'pointer'
-  },
-  successMessage: {
-    backgroundColor: '#d4edda',
-    color: '#155724',
-    padding: '1rem',
-    borderRadius: '5px',
-    textAlign: 'center'
-  },
-  accordion: {
-    borderBottom: '1px solid #eee',
-    padding: '0.8rem 0',
-    cursor: 'pointer'
-  },
-  accordionHeader: {
-    fontWeight: 'bold',
-    color: '#333'
-  },
-  accordionBody: {
-    marginTop: '0.5rem',
-    color: '#555',
-    lineHeight: '1.5'
-  },
-  badge: {
-    fontSize: '0.8rem',
-    backgroundColor: '#f0f0f0',
-    padding: '0.2rem 0.5rem',
-    borderRadius: '3px',
-    color: '#666'
-  },
-  footer: {
-    textAlign: 'center',
-    padding: '1.5rem',
-    backgroundColor: '#111',
-    color: '#aaa',
-    fontSize: '0.9rem'
-  }
-};
+<section id="faq"><div class="container"><div class="section-head"><h2>ተደጋጋሚ ጥያቄዎች</h2><p>በተደጋጋሚ ለሚጠየቁ ጥያቄዎች አጭር መልሶች።</p></div>
+<div class="faq">
+<details><summary>ቤተ ሊቃውንት ምንድን ነው?</summary><p>የእውቀትና የትምህርት መረጃዎችን በቀላሉ ለማግኘት የተዘጋጀ የመረጃ መድረክ ነው።</p></details>
+<details><summary>ጥያቄ እንዴት ማቅረብ እችላለሁ?</summary><p>ወደ “ጥያቄ ያቅርቡ” ክፍል በመሄድ ስምዎንና ጥያቄዎን ያስገቡ።</p></details>
+<details><summary>ድረ-ገጹን በስልክ መጠቀም እችላለሁ?</summary><p>አዎ። ይህ ዲዛይን ለስልክ፣ ታብሌት እና ኮምፒውተር ተስማሚ ነው።</p></details>
+</div></div></section>
+</main>
+<footer><div class="footer-grid"><div><h3>ቤተ ሊቃውንት</h3><p>እውቀትን በቀላሉ ለሁሉም ማድረስ።</p></div><div><h3>ፈጣን አገናኞች</h3><p><a href="#home">መነሻ</a></p><p><a href="#about">ስለ እኛ</a></p><p><a href="#question">ጥያቄ ያቅርቡ</a></p></div><div><h3>ያግኙን</h3><p>ለጥያቄና አስተያየት የጥያቄ ፎርሙን ይጠቀሙ።</p></div></div><div class="copyright">© 2026 ቤተ-ሊቃውንት (Bete-Likawunt) • መረጃ ለሁሉም</div></footer>
+</body>
+</html>
