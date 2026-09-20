@@ -1,246 +1,771 @@
 <!DOCTYPE html>
 <html lang="am">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ቤተ ሊቃውንት</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ቤተ ሊቃውንት</title>
+  <meta name="description" content="ቤተ ሊቃውንት - የመንፈሳዊ ጥያቄና መልስ የጥሪ ማዕከል">
 
-<meta name="description" content="ቤተ ሊቃውንት - የመንፈሳዊ ጥያቄና መልስ የጥሪ ማዕከል።">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-html{
-  scroll-behavior:smooth;
-}
+    body {
+      font-family: Arial, "Noto Sans Ethiopic", sans-serif;
+      background: #f7f3e9;
+      color: #24352b;
+      line-height: 1.7;
+    }
 
-body{
-  font-family:Arial,"Noto Sans Ethiopic",sans-serif;
-  background:#f7f3e9;
-  color:#24352b;
-  line-height:1.7;
-}
+    a {
+      text-decoration: none;
+    }
 
-a{
-  text-decoration:none;
-}
+    button,
+    input,
+    textarea {
+      font-family: inherit;
+    }
 
-.container{
-  width:min(1100px,92%);
-  margin:auto;
-}
+    .container {
+      width: min(1100px, 92%);
+      margin: auto;
+    }
 
-/* HEADER */
-header{
-  background:#fffdf7;
-  position:sticky;
-  top:0;
-  z-index:1000;
-  border-bottom:2px solid #c9a227;
-}
+    /* HEADER */
+    header {
+      background: #fffdf7;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 2px solid #c9a227;
+    }
 
-.nav{
-  min-height:75px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
+    .nav {
+      min-height: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-.logo{
-  color:#164734;
-  font-size:22px;
-  font-weight:800;
-}
+    .logo {
+      color: #164734;
+      font-size: 22px;
+      font-weight: 800;
+    }
 
-.logo span{
-  color:#b08a24;
-}
+    .logo span {
+      color: #b08a24;
+    }
 
-nav{
-  display:flex;
-  align-items:center;
-  gap:20px;
-}
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
 
-nav a{
-  color:#34483b;
-  font-weight:600;
-}
+    nav a {
+      color: #34483b;
+      font-weight: 600;
+    }
 
-nav a:hover{
-  color:#a67c17;
-}
+    nav a:hover {
+      color: #a67c17;
+    }
 
-.lang-btn{
-  border:1px solid #c9a227;
-  background:#fffdf7;
-  padding:8px 13px;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:bold;
-  color:#164734;
-}
+    .lang-btn {
+      border: 1px solid #c9a227;
+      background: #fffdf7;
+      padding: 8px 13px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #164734;
+    }
 
-.menu-btn{
-  display:none;
-  border:0;
-  background:none;
-  font-size:28px;
-  cursor:pointer;
-}
+    .menu-btn {
+      display: none;
+      border: 0;
+      background: transparent;
+      font-size: 28px;
+      cursor: pointer;
+      color: #164734;
+    }
 
-/* HERO */
-.hero{
-  position:relative;
-  overflow:hidden;
-  background:radial-gradient(circle at top,#386b52 0,#1d513a 45%,#12372a 100%);
-  color:white;
-  text-align:center;
-  padding:85px 15px;
-}
+    /* HERO */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(
+        circle at top,
+        #386b52 0,
+        #1d513a 45%,
+        #12372a 100%
+      );
+      color: white;
+      text-align: center;
+      padding: 85px 15px;
+    }
 
-.hero:before,
-.hero:after{
-  content:"✝";
-  position:absolute;
-  color:rgba(201,162,39,.12);
-  font-size:180px;
-  font-weight:bold;
-}
+    .hero::before,
+    .hero::after {
+      content: "✝";
+      position: absolute;
+      color: rgba(201, 162, 39, 0.12);
+      font-size: 180px;
+      font-weight: bold;
+    }
 
-.hero:before{
-  left:5%;
-  top:10%;
-}
+    .hero::before {
+      left: 5%;
+      top: 10%;
+    }
 
-.hero:after{
-  right:5%;
-  bottom:0;
-}
+    .hero::after {
+      right: 5%;
+      bottom: 0;
+    }
 
-.hero-logo{
-  position:relative;
-  z-index:1;
-  width:115px;
-  height:115px;
-  margin:0 auto 20px;
-  border-radius:50%;
-  background:#fffdf7;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#164734;
-  font-size:48px;
-  font-weight:bold;
-  border:5px solid #c9a227;
-  box-shadow:0 8px 30px rgba(0,0,0,.25);
-}
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
 
-.hero-church,
-.hero-name,
-.hero-subtitle,
-.hero h1,
-.hero-text,
-.hero .btn{
-  position:relative;
-  z-index:1;
-}
+    .hero-logo {
+      width: 115px;
+      height: 115px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: #fffdf7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #164734;
+      font-size: 48px;
+      font-weight: bold;
+      border: 5px solid #c9a227;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    }
 
-.hero-church{
-  font-size:20px;
-  font-weight:bold;
-  margin-bottom:5px;
-}
+    .hero-church {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
 
-.hero-name{
-  font-size:44px;
-  font-weight:900;
-  color:#f2d77a;
-  margin-bottom:5px;
-}
+    .hero-name {
+      font-size: 44px;
+      font-weight: 900;
+      color: #f2d77a;
+      margin-bottom: 5px;
+    }
 
-.hero-subtitle{
-  font-size:19px;
-  margin-bottom:22px;
-}
+    .hero-subtitle {
+      font-size: 19px;
+      margin-bottom: 22px;
+    }
 
-.hero h1{
-  font-size:30px;
-  margin-bottom:12px;
-}
+    .hero h1 {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
 
-.hero-text{
-  max-width:720px;
-  margin:auto;
-  font-size:18px;
-}
+    .hero-text {
+      max-width: 720px;
+      margin: auto;
+      font-size: 18px;
+    }
 
-.btn{
-  display:inline-block;
-  margin-top:25px;
-  padding:13px 24px;
-  border-radius:9px;
-  background:#f2d77a;
-  color:#173d2d;
-  font-weight:bold;
-  border:2px solid #c9a227;
-  cursor:pointer;
-}
+    .btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 13px 24px;
+      border-radius: 9px;
+      background: #f2d77a;
+      color: #173d2d;
+      font-weight: bold;
+      border: 2px solid #c9a227;
+      cursor: pointer;
+    }
 
-.btn:hover{
-  background:#fff1b0;
-}
+    .btn:hover {
+      background: #fff1b0;
+    }
 
-/* SECTIONS */
-section{
-  padding:70px 0;
-}
+    /* SECTIONS */
+    section {
+      padding: 70px 0;
+    }
 
-.section-title{
-  text-align:center;
-  margin-bottom:35px;
-}
+    .section-title {
+      text-align: center;
+      margin-bottom: 35px;
+    }
 
-.section-title h2{
-  color:#164734;
-  font-size:32px;
-}
+    .section-title h2 {
+      color: #164734;
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
 
-.section-title p{
-  color:#66756c;
-}
+    .section-title p {
+      color: #66756c;
+    }
 
-/* ASK */
-.ask-box{
-  background:#fffdf7;
-  padding:30px;
-  border-radius:15px;
-  border:1px solid #dccb8b;
-  box-shadow:0 7px 25px rgba(46,60,50,.08);
-  max-width:800px;
-  margin:auto;
-}
+    /* ASK */
+    .ask-box {
+      background: #fffdf7;
+      padding: 30px;
+      border-radius: 15px;
+      border: 1px solid #dccb8b;
+      box-shadow: 0 7px 25px rgba(46, 60, 50, 0.08);
+      max-width: 800px;
+      margin: auto;
+    }
 
-.ask-box input,
-.ask-box textarea{
-  width:100%;
-  padding:14px;
-  border:1px solid #d5c99e;
-  border-radius:9px;
-  margin-bottom:15px;
-  font-size:16px;
-  font-family:inherit;
-  background:#fffefb;
-}
+    .ask-box input,
+    .ask-box textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d5c99e;
+      border-radius: 9px;
+      margin-bottom: 15px;
+      font-size: 16px;
+      background: #fffefb;
+      color: #24352b;
+      outline: none;
+    }
 
-.ask-box textarea{
-  min-height:150px;
-  resize:vertical;
-}
+    .ask-box input:focus,
+    .ask-box textarea:focus,
+    .search input:focus {
+      border-color: #a67c17;
+    }
 
-.submit-btn{
-  width:
+    .ask-box textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      border: 0;
+      border-radius: 9px;
+      background: #164734;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background: #216046;
+    }
+
+    .success {
+      display: none;
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      background: #e7f3e9;
+      color: #17633d;
+      text-align: center;
+    }
+
+    /* RESOURCES */
+    .resources-section {
+      background: #f7f3e9;
+    }
+
+    .search {
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+
+    .search input {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #d5c99e;
+      border-radius: 10px;
+      font-size: 16px;
+      background: #fffdf7;
+      outline: none;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: #fffdf7;
+      border-radius: 14px;
+      padding: 25px;
+      border: 1px solid #dccb8b;
+      box-shadow: 0 5px 18px rgba(46, 60, 50, 0.06);
+    }
+
+    .card .icon {
+      font-size: 35px;
+    }
+
+    .card h3 {
+      color: #164734;
+      margin: 10px 0;
+    }
+
+    .card p {
+      color: #66756c;
+    }
+
+    /* ABOUT */
+    .about {
+      background: #fffdf7;
+      border-top: 1px solid #e4d8a9;
+      border-bottom: 1px solid #e4d8a9;
+    }
+
+    .about-text {
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+      font-size: 18px;
+      color: #4d5b53;
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .contact-card {
+      background: #fffdf7;
+      padding: 28px;
+      text-align: center;
+      border-radius: 14px;
+      border: 1px solid #dccb8b;
+    }
+
+    .contact-card .icon {
+      font-size: 32px;
+    }
+
+    .contact-card h3 {
+      color: #164734;
+      margin: 8px 0;
+    }
+
+    .contact-card p {
+      color: #66756c;
+    }
+
+    .contact-card a {
+      color: #a67c17;
+      font-weight: bold;
+      word-break: break-word;
+    }
+
+    /* DASHBOARD */
+    .dashboard {
+      background: #edf1ec;
+    }
+
+    .dashboard-box {
+      background: #fffdf7;
+      border-radius: 15px;
+      padding: 25px;
+      border: 1px solid #dccb8b;
+      box-shadow: 0 5px 18px rgba(46, 60, 50, 0.06);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .stat {
+      background: #f8f5e9;
+      border: 1px solid #ddd0a0;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 30px;
+      color: #164734;
+    }
+
+    .question {
+      border: 1px solid #ddd0a0;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 15px;
+      background: #fffefb;
+    }
+
+    .question h4 {
+      color: #164734;
+      margin-bottom: 8px;
+    }
+
+    .question small {
+      color: #66756c;
+    }
+
+    .question-text {
+      margin: 12px 0;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .delete-btn {
+      border: 0;
+      background: #a52a20;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 7px;
+      cursor: pointer;
+    }
+
+    .empty {
+      text-align: center;
+      color: #66756c;
+      padding: 25px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #12372a;
+      color: #e6e0c8;
+      text-align: center;
+      padding: 28px 15px;
+      border-top: 3px solid #c9a227;
+    }
+
+    /* MOBILE */
+    @media (max-width: 800px) {
+      .menu-btn {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 75px;
+        left: 0;
+        right: 0;
+        background: #fffdf7;
+        padding: 20px;
+        flex-direction: column;
+        align-items: stretch;
+        border-bottom: 2px solid #c9a227;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      nav a {
+        padding: 8px 0;
+      }
+
+      .hero {
+        padding: 70px 15px;
+      }
+
+      .hero-name {
+        font-size: 34px;
+      }
+
+      .hero-church {
+        font-size: 17px;
+      }
+
+      .hero-subtitle {
+        font-size: 16px;
+      }
+
+      .cards,
+      .contact-grid,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title h2 {
+        font-size: 27px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+
+      <a href="#home" class="logo">
+        ቤተ <span>ሊቃውንት</span>
+      </a>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Menu">
+        ☰
+      </button>
+
+      <nav id="navMenu">
+        <a href="#home">መነሻ</a>
+        <a href="#ask">ጥያቄ ይጠይቁ</a>
+        <a href="#resources">መረጃዎች</a>
+        <a href="#about">ስለ እኛ</a>
+        <a href="#contact">ያግኙን</a>
+        <a href="#dashboard">Dashboard</a>
+        <button class="lang-btn" id="langBtn">EN</button>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HOME -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+
+        <div class="hero-logo">✝</div>
+
+        <div class="hero-church">
+          ኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን
+        </div>
+
+        <div class="hero-name">
+          ቤተ ሊቃውንት
+        </div>
+
+        <div class="hero-subtitle">
+          የመንፈሳዊ ጥያቄና መልስ የጥሪ ማዕከል
+        </div>
+
+        <h1>ማንኛውንም ጥያቄ ይጠይቁ</h1>
+
+        <p class="hero-text">
+          መንፈሳዊ ሕይወትዎን በእውቀት ይደግፉ።
+        </p>
+
+        <a href="#ask" class="btn">
+          ጥያቄ ይጠይቁ
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ASK -->
+    <section id="ask">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>ጥያቄ ይጠይቁ</h2>
+          <p>የመንፈሳዊ ጥያቄዎን ይላኩ።</p>
+        </div>
+
+        <div class="ask-box">
+
+          <input
+            type="text"
+            id="questionName"
+            placeholder="ስምዎ (አማራጭ)"
+          >
+
+          <input
+            type="text"
+            id="questionSubject"
+            placeholder="የጥያቄው ርዕስ"
+          >
+
+          <textarea
+            id="questionText"
+            placeholder="ጥያቄዎን እዚህ ይጻፉ..."
+          ></textarea>
+
+          <button class="submit-btn" id="submitQuestion">
+            ጥያቄውን ላክ
+          </button>
+
+          <div class="success" id="successMessage">
+            ጥያቄዎ በተሳካ ሁኔታ ተቀብሏል።
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- RESOURCES -->
+    <section class="resources-section" id="resources">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>የእውቀት ምንጮች</h2>
+          <p>መንፈሳዊ እውቀትን በቀላሉ ይፈልጉ።</p>
+        </div>
+
+        <div class="search">
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="መረጃ ይፈልጉ..."
+          >
+        </div>
+
+        <div class="cards" id="resourceCards">
+
+          <div class="card resource">
+            <div class="icon">📚</div>
+            <h3>መጽሐፍት</h3>
+            <p>የመንፈሳዊ እውቀት መጽሐፍትን ይፈልጉ።</p>
+          </div>
+
+          <div class="card resource">
+            <div class="icon">📖</div>
+            <h3>ጽሑፎች</h3>
+            <p>ጠቃሚ መንፈሳዊ ጽሑፎችን ያንብቡ።</p>
+          </div>
+
+          <div class="card resource">
+            <div class="icon">🔎</div>
+            <h3>ጥናትና ምርምር</h3>
+            <p>ለጥናትና ምርምር የሚጠቅሙ መረጃዎችን ያግኙ።</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>ስለ ቤተ ሊቃውንት</h2>
+        </div>
+
+        <div class="about-text">
+          <p>
+            ቤተ ሊቃውንት የመንፈሳዊ ጥያቄና መልስ
+            የጥሪ ማዕከል ሲሆን፣ ሰዎች የመንፈሳዊ
+            ጥያቄዎቻቸውን በቀላሉ እንዲያቀርቡና
+            ጠቃሚ እውቀት እንዲያገኙ የተዘጋጀ መድረክ ነው።
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>ያግኙን</h2>
+          <p>ለጥያቄ እና ለተጨማሪ መረጃ ያግኙን።</p>
+        </div>
+
+        <div class="contact-grid">
+
+          <div class="contact-card">
+            <div class="icon">☎️</div>
+            <h3>ዋና የጥያቄ ቁጥር</h3>
+            <p>ለጥያቄ ይደውሉ</p>
+            <a href="tel:2721">2721</a>
+          </div>
+
+          <div class="contact-card">
+            <div class="icon">📞</div>
+            <h3>ስልክ</h3>
+            <p>በስልክ ያግኙን</p>
+            <a href="tel:0962244464">0962244464</a>
+          </div>
+
+          <div class="contact-card">
+            <div class="icon">✉️</div>
+            <h3>Email</h3>
+            <p>በEmail ያግኙን</p>
+            <a href="mailto:ezrasamuel@2721gmail.com">
+              ezrasamuel@2721gmail.com
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section class="dashboard" id="dashboard">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Dashboard</h2>
+          <p>በዚህ መሣሪያ የተላኩ ጥያቄዎችን ይመልከቱ።</p>
+        </div>
+
+        <div class="dashboard-box">
+
+          <div class="stats">
+
+            <div class="stat">
+              <strong id="totalQuestions">0</strong>
+              ጠቅላላ ጥያቄ
+            </div>
+
+            <div class="stat">
+              <strong id="todayQuestions">0</strong>
+              የዛሬ ጥያቄ
+            </div>
+
+            <div class="stat">
+              <strong>2721</strong>
+              የጥያቄ መስመር
+            </div>
+
+          </div>
+
+          <div id="questionList"></div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      © <span id="year"></span> ቤተ ሊቃውንት
+    </p>
+
+    <p>
+      ኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን
+    </p>
+  </footer>
+
+  <script>
+    "use strict";
+
+    /* MOBILE MENU */
+    const menuBtn = document.getElementById("menuBtn");
+    const navMenu = document.getElementById("navMenu");
+
+    menuBtn.addEventListener("click", function ()
