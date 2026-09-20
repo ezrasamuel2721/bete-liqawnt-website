@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ቤተ ሊቃውንት</title>
-  <meta name="description" content="ቤተ ሊቃውንት - የመንፈሳዊ ጥያቄና መልስ የጥሪ ማዕከል">
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     * {
@@ -13,452 +15,236 @@
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       font-family: Arial, "Noto Sans Ethiopic", sans-serif;
-      background: #f7f3e9;
-      color: #24352b;
+      background: #f7f8fa;
+      color: #222;
       line-height: 1.7;
     }
 
-    a {
-      text-decoration: none;
-    }
-
-    button,
-    input,
-    textarea {
-      font-family: inherit;
-    }
-
-    .container {
-      width: min(1100px, 92%);
-      margin: auto;
-    }
-
-    /* HEADER */
     header {
-      background: #fffdf7;
       position: sticky;
       top: 0;
       z-index: 1000;
-      border-bottom: 2px solid #c9a227;
+      background: #ffffff;
+      border-bottom: 1px solid #ddd;
     }
 
     .nav {
-      min-height: 75px;
+      max-width: 1100px;
+      margin: auto;
+      min-height: 70px;
+      padding: 10px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
     .logo {
-      color: #164734;
-      font-size: 22px;
-      font-weight: 800;
-    }
-
-    .logo span {
-      color: #b08a24;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-
-    nav a {
-      color: #34483b;
-      font-weight: 600;
-    }
-
-    nav a:hover {
-      color: #a67c17;
-    }
-
-    .lang-btn {
-      border: 1px solid #c9a227;
-      background: #fffdf7;
-      padding: 8px 13px;
-      border-radius: 8px;
-      cursor: pointer;
+      font-size: 24px;
       font-weight: bold;
-      color: #164734;
+      color: #7a4b16;
     }
 
     .menu-btn {
       display: none;
-      border: 0;
-      background: transparent;
+      border: none;
+      background: none;
       font-size: 28px;
       cursor: pointer;
-      color: #164734;
     }
 
-    /* HERO */
-    .hero {
-      position: relative;
-      overflow: hidden;
-      background: radial-gradient(
-        circle at top,
-        #386b52 0,
-        #1d513a 45%,
-        #12372a 100%
-      );
-      color: white;
-      text-align: center;
-      padding: 85px 15px;
+    nav {
+      display: flex;
+      gap: 18px;
+      align-items: center;
     }
 
-    .hero::before,
-    .hero::after {
-      content: "✝";
-      position: absolute;
-      color: rgba(201, 162, 39, 0.12);
-      font-size: 180px;
+    nav a {
+      text-decoration: none;
+      color: #333;
       font-weight: bold;
     }
 
-    .hero::before {
-      left: 5%;
-      top: 10%;
+    nav a:hover {
+      color: #8a5a20;
     }
 
-    .hero::after {
-      right: 5%;
-      bottom: 0;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
+    .hero {
+      background: linear-gradient(135deg, #fff7e6, #f2e2c4);
+      text-align: center;
+      padding: 75px 20px;
     }
 
     .hero-logo {
-      width: 115px;
-      height: 115px;
+      width: 90px;
+      height: 90px;
       margin: 0 auto 20px;
+      border: 3px solid #7a4b16;
       border-radius: 50%;
-      background: #fffdf7;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #164734;
-      font-size: 48px;
-      font-weight: bold;
-      border: 5px solid #c9a227;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-    }
-
-    .hero-church {
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    .hero-name {
-      font-size: 44px;
-      font-weight: 900;
-      color: #f2d77a;
-      margin-bottom: 5px;
-    }
-
-    .hero-subtitle {
-      font-size: 19px;
-      margin-bottom: 22px;
+      font-size: 40px;
     }
 
     .hero h1 {
-      font-size: 30px;
+      font-size: 42px;
+      color: #6d4314;
       margin-bottom: 12px;
     }
 
-    .hero-text {
-      max-width: 720px;
-      margin: auto;
+    .hero p {
       font-size: 18px;
+      color: #555;
     }
 
-    .btn {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 13px 24px;
-      border-radius: 9px;
-      background: #f2d77a;
-      color: #173d2d;
-      font-weight: bold;
-      border: 2px solid #c9a227;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      background: #fff1b0;
-    }
-
-    /* SECTIONS */
     section {
-      padding: 70px 0;
+      max-width: 1100px;
+      margin: auto;
+      padding: 55px 20px;
     }
 
     .section-title {
       text-align: center;
-      margin-bottom: 35px;
+      margin-bottom: 30px;
+      color: #6d4314;
+      font-size: 30px;
     }
 
-    .section-title h2 {
-      color: #164734;
-      font-size: 32px;
-      margin-bottom: 8px;
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 25px;
+      box-shadow: 0 4px 18px rgba(0,0,0,.08);
     }
 
-    .section-title p {
-      color: #66756c;
-    }
-
-    /* ASK */
-    .ask-box {
-      background: #fffdf7;
-      padding: 30px;
-      border-radius: 15px;
-      border: 1px solid #dccb8b;
-      box-shadow: 0 7px 25px rgba(46, 60, 50, 0.08);
-      max-width: 800px;
+    form {
+      max-width: 750px;
       margin: auto;
     }
 
-    .ask-box input,
-    .ask-box textarea {
+    label {
+      display: block;
+      margin: 15px 0 6px;
+      font-weight: bold;
+    }
+
+    input,
+    textarea {
       width: 100%;
-      padding: 14px;
-      border: 1px solid #d5c99e;
-      border-radius: 9px;
-      margin-bottom: 15px;
+      padding: 13px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
       font-size: 16px;
-      background: #fffefb;
-      color: #24352b;
-      outline: none;
+      font-family: inherit;
     }
 
-    .ask-box input:focus,
-    .ask-box textarea:focus,
-    .search input:focus {
-      border-color: #a67c17;
-    }
-
-    .ask-box textarea {
-      min-height: 150px;
+    textarea {
+      min-height: 140px;
       resize: vertical;
     }
 
-    .submit-btn {
-      width: 100%;
-      padding: 14px;
-      border: 0;
-      border-radius: 9px;
-      background: #164734;
+    button.submit-btn {
+      margin-top: 18px;
+      padding: 13px 25px;
+      border: none;
+      border-radius: 8px;
+      background: #7a4b16;
       color: white;
       font-size: 16px;
-      font-weight: bold;
       cursor: pointer;
     }
 
-    .submit-btn:hover {
-      background: #216046;
+    button.submit-btn:hover {
+      background: #5e380e;
     }
 
-    .success {
+    #successMessage {
       display: none;
       margin-top: 15px;
       padding: 12px;
       border-radius: 8px;
-      background: #e7f3e9;
-      color: #17633d;
-      text-align: center;
+      background: #e7f6e7;
+      color: #176b17;
     }
 
-    /* RESOURCES */
-    .resources-section {
-      background: #f7f3e9;
+    .search-box {
+      max-width: 650px;
+      margin: auto auto 25px;
     }
 
-    .search {
-      max-width: 700px;
-      margin: 0 auto 30px;
-    }
-
-    .search input {
-      width: 100%;
-      padding: 15px;
-      border: 1px solid #d5c99e;
-      border-radius: 10px;
-      font-size: 16px;
-      background: #fffdf7;
-      outline: none;
-    }
-
-    .cards {
+    .resources {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
     }
 
-    .card {
-      background: #fffdf7;
-      border-radius: 14px;
-      padding: 25px;
-      border: 1px solid #dccb8b;
-      box-shadow: 0 5px 18px rgba(46, 60, 50, 0.06);
+    .resource {
+      background: white;
+      padding: 22px;
+      border-radius: 12px;
+      box-shadow: 0 3px 14px rgba(0,0,0,.07);
     }
 
-    .card .icon {
-      font-size: 35px;
-    }
-
-    .card h3 {
-      color: #164734;
-      margin: 10px 0;
-    }
-
-    .card p {
-      color: #66756c;
-    }
-
-    /* ABOUT */
     .about {
-      background: #fffdf7;
-      border-top: 1px solid #e4d8a9;
-      border-bottom: 1px solid #e4d8a9;
-    }
-
-    .about-text {
-      max-width: 800px;
+      max-width: 850px;
       margin: auto;
       text-align: center;
-      font-size: 18px;
-      color: #4d5b53;
     }
 
-    /* CONTACT */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .contact-card {
-      background: #fffdf7;
-      padding: 28px;
+    .contact {
       text-align: center;
-      border-radius: 14px;
-      border: 1px solid #dccb8b;
     }
 
-    .contact-card .icon {
-      font-size: 32px;
-    }
-
-    .contact-card h3 {
-      color: #164734;
-      margin: 8px 0;
-    }
-
-    .contact-card p {
-      color: #66756c;
-    }
-
-    .contact-card a {
-      color: #a67c17;
-      font-weight: bold;
-      word-break: break-word;
-    }
-
-    /* DASHBOARD */
-    .dashboard {
-      background: #edf1ec;
-    }
-
-    .dashboard-box {
-      background: #fffdf7;
-      border-radius: 15px;
-      padding: 25px;
-      border: 1px solid #dccb8b;
-      box-shadow: 0 5px 18px rgba(46, 60, 50, 0.06);
-    }
-
-    .stats {
+    .dashboard-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
+      gap: 18px;
       margin-bottom: 25px;
     }
 
     .stat {
-      background: #f8f5e9;
-      border: 1px solid #ddd0a0;
-      padding: 20px;
-      border-radius: 12px;
+      background: white;
+      padding: 25px;
       text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 3px 14px rgba(0,0,0,.07);
+    }
+
+    .stat h3 {
+      color: #777;
+      font-size: 16px;
     }
 
     .stat strong {
       display: block;
-      font-size: 30px;
-      color: #164734;
+      margin-top: 8px;
+      font-size: 32px;
+      color: #7a4b16;
     }
 
-    .question {
-      border: 1px solid #ddd0a0;
-      border-radius: 12px;
+    .question-item {
+      background: white;
+      margin-bottom: 12px;
       padding: 18px;
-      margin-bottom: 15px;
-      background: #fffefb;
+      border-radius: 10px;
+      border-left: 4px solid #7a4b16;
     }
 
-    .question h4 {
-      color: #164734;
-      margin-bottom: 8px;
+    .question-item small {
+      color: #777;
     }
 
-    .question small {
-      color: #66756c;
-    }
-
-    .question-text {
-      margin: 12px 0;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-    }
-
-    .delete-btn {
-      border: 0;
-      background: #a52a20;
-      color: white;
-      padding: 8px 12px;
-      border-radius: 7px;
-      cursor: pointer;
-    }
-
-    .empty {
-      text-align: center;
-      color: #66756c;
-      padding: 25px;
-    }
-
-    /* FOOTER */
     footer {
-      background: #12372a;
-      color: #e6e0c8;
+      background: #292929;
+      color: white;
       text-align: center;
-      padding: 28px 15px;
-      border-top: 3px solid #c9a227;
+      padding: 25px 15px;
+      margin-top: 30px;
     }
 
-    /* MOBILE */
-    @media (max-width: 800px) {
+    @media (max-width: 750px) {
       .menu-btn {
         display: block;
       }
@@ -466,48 +252,25 @@
       nav {
         display: none;
         position: absolute;
-        top: 75px;
+        top: 70px;
         left: 0;
         right: 0;
-        background: #fffdf7;
-        padding: 20px;
+        background: white;
         flex-direction: column;
-        align-items: stretch;
-        border-bottom: 2px solid #c9a227;
+        padding: 20px;
+        border-bottom: 1px solid #ddd;
       }
 
-      nav.active {
+      nav.open {
         display: flex;
       }
 
-      nav a {
-        padding: 8px 0;
+      .hero h1 {
+        font-size: 32px;
       }
 
-      .hero {
-        padding: 70px 15px;
-      }
-
-      .hero-name {
-        font-size: 34px;
-      }
-
-      .hero-church {
-        font-size: 17px;
-      }
-
-      .hero-subtitle {
-        font-size: 16px;
-      }
-
-      .cards,
-      .contact-grid,
-      .stats {
+      .dashboard-grid {
         grid-template-columns: 1fr;
-      }
-
-      .section-title h2 {
-        font-size: 27px;
       }
     }
   </style>
@@ -515,257 +278,354 @@
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="container nav">
+<header>
+  <div class="nav">
+    <div class="logo">ቤተ ሊቃውንት</div>
 
-      <a href="#home" class="logo">
-        ቤተ <span>ሊቃውንት</span>
-      </a>
+    <button class="menu-btn" id="menuBtn">☰</button>
 
-      <button class="menu-btn" id="menuBtn" aria-label="Menu">
-        ☰
-      </button>
+    <nav id="navMenu">
+      <a href="#home">መነሻ</a>
+      <a href="#ask">ጥያቄ ይጠይቁ</a>
+      <a href="#resources">መረጃዎች</a>
+      <a href="#about">ስለ እኛ</a>
+      <a href="#contact">ያግኙን</a>
+      <a href="#dashboard">Dashboard</a>
+    </nav>
+  </div>
+</header>
 
-      <nav id="navMenu">
-        <a href="#home">መነሻ</a>
-        <a href="#ask">ጥያቄ ይጠይቁ</a>
-        <a href="#resources">መረጃዎች</a>
-        <a href="#about">ስለ እኛ</a>
-        <a href="#contact">ያግኙን</a>
-        <a href="#dashboard">Dashboard</a>
-        <button class="lang-btn" id="langBtn">EN</button>
-      </nav>
+<main>
 
+  <section class="hero" id="home">
+    <div class="hero-logo">✝</div>
+    <h1>ቤተ ሊቃውንት</h1>
+    <p>የእውቀት፣ የጥያቄና የመረጃ ማዕከል</p>
+  </section>
+
+  <section id="ask">
+    <h2 class="section-title">ጥያቄ ይጠይቁ</h2>
+
+    <div class="card">
+      <form id="questionForm">
+
+        <label for="questionName">ስም</label>
+        <input id="questionName" type="text" placeholder="ስምዎን ያስገቡ">
+
+        <label for="questionSubject">ርዕስ</label>
+        <input id="questionSubject" type="text" placeholder="የጥያቄውን ርዕስ ያስገቡ">
+
+        <label for="questionText">ጥያቄ</label>
+        <textarea id="questionText" placeholder="ጥያቄዎን እዚህ ይጻፉ..." required></textarea>
+
+        <button class="submit-btn" id="submitQuestion" type="submit">
+          ጥያቄ ላክ
+        </button>
+
+        <div id="successMessage"></div>
+      </form>
     </div>
-  </header>
+  </section>
 
-  <main>
+  <section id="resources">
+    <h2 class="section-title">መረጃዎች</h2>
 
-    <!-- HOME -->
-    <section class="hero" id="home">
-      <div class="hero-content">
+    <div class="search-box">
+      <input id="searchInput" type="search" placeholder="መረጃ ይፈልጉ...">
+    </div>
 
-        <div class="hero-logo">✝</div>
-
-        <div class="hero-church">
-          ኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን
-        </div>
-
-        <div class="hero-name">
-          ቤተ ሊቃውንት
-        </div>
-
-        <div class="hero-subtitle">
-          የመንፈሳዊ ጥያቄና መልስ የጥሪ ማዕከል
-        </div>
-
-        <h1>ማንኛውንም ጥያቄ ይጠይቁ</h1>
-
-        <p class="hero-text">
-          መንፈሳዊ ሕይወትዎን በእውቀት ይደግፉ።
-        </p>
-
-        <a href="#ask" class="btn">
-          ጥያቄ ይጠይቁ
-        </a>
-
+    <div class="resources" id="resourceList">
+      <div class="resource">
+        <h3>የእውቀት ማዕከል</h3>
+        <p>ጠቃሚ መረጃዎችን እዚህ ያግኙ።</p>
       </div>
-    </section>
 
-    <!-- ASK -->
-    <section id="ask">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>ጥያቄ ይጠይቁ</h2>
-          <p>የመንፈሳዊ ጥያቄዎን ይላኩ።</p>
-        </div>
-
-        <div class="ask-box">
-
-          <input
-            type="text"
-            id="questionName"
-            placeholder="ስምዎ (አማራጭ)"
-          >
-
-          <input
-            type="text"
-            id="questionSubject"
-            placeholder="የጥያቄው ርዕስ"
-          >
-
-          <textarea
-            id="questionText"
-            placeholder="ጥያቄዎን እዚህ ይጻፉ..."
-          ></textarea>
-
-          <button class="submit-btn" id="submitQuestion">
-            ጥያቄውን ላክ
-          </button>
-
-          <div class="success" id="successMessage">
-            ጥያቄዎ በተሳካ ሁኔታ ተቀብሏል።
-          </div>
-
-        </div>
+      <div class="resource">
+        <h3>ጥያቄና መልስ</h3>
+        <p>ጥያቄዎን ይላኩና መልስ ይፈልጉ።</p>
       </div>
-    </section>
 
-    <!-- RESOURCES -->
-    <section class="resources-section" id="resources">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>የእውቀት ምንጮች</h2>
-          <p>መንፈሳዊ እውቀትን በቀላሉ ይፈልጉ።</p>
-        </div>
-
-        <div class="search">
-          <input
-            type="search"
-            id="searchInput"
-            placeholder="መረጃ ይፈልጉ..."
-          >
-        </div>
-
-        <div class="cards" id="resourceCards">
-
-          <div class="card resource">
-            <div class="icon">📚</div>
-            <h3>መጽሐፍት</h3>
-            <p>የመንፈሳዊ እውቀት መጽሐፍትን ይፈልጉ።</p>
-          </div>
-
-          <div class="card resource">
-            <div class="icon">📖</div>
-            <h3>ጽሑፎች</h3>
-            <p>ጠቃሚ መንፈሳዊ ጽሑፎችን ያንብቡ።</p>
-          </div>
-
-          <div class="card resource">
-            <div class="icon">🔎</div>
-            <h3>ጥናትና ምርምር</h3>
-            <p>ለጥናትና ምርምር የሚጠቅሙ መረጃዎችን ያግኙ።</p>
-          </div>
-
-        </div>
+      <div class="resource">
+        <h3>ትምህርታዊ መረጃ</h3>
+        <p>የተለያዩ ጠቃሚ ምንጮችን ይዳስሱ።</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ABOUT -->
-    <section class="about" id="about">
-      <div class="container">
+  <section id="about">
+    <h2 class="section-title">ስለ እኛ</h2>
+    <div class="about card">
+      <p>
+        ቤተ ሊቃውንት እውቀትን፣ ጥያቄንና መረጃን
+        በቀላሉ ለማግኘት የተዘጋጀ የመረጃ መድረክ ነው።
+      </p>
+    </div>
+  </section>
 
-        <div class="section-title">
-          <h2>ስለ ቤተ ሊቃውንት</h2>
-        </div>
+  <section id="contact">
+    <h2 class="section-title">ያግኙን</h2>
+    <div class="contact card">
+      <p>📞 2721</p>
+      <p>📞 0962244464</p>
+      <p>✉️ ezrasamuel@2721gmail.com</p>
+    </div>
+  </section>
 
-        <div class="about-text">
-          <p>
-            ቤተ ሊቃውንት የመንፈሳዊ ጥያቄና መልስ
-            የጥሪ ማዕከል ሲሆን፣ ሰዎች የመንፈሳዊ
-            ጥያቄዎቻቸውን በቀላሉ እንዲያቀርቡና
-            ጠቃሚ እውቀት እንዲያገኙ የተዘጋጀ መድረክ ነው።
-          </p>
-        </div>
+  <section id="dashboard">
+    <h2 class="section-title">Dashboard</h2>
 
+    <div class="dashboard-grid">
+      <div class="stat">
+        <h3>ጠቅላላ ጥያቄዎች</h3>
+        <strong id="totalQuestions">0</strong>
       </div>
-    </section>
 
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>ያግኙን</h2>
-          <p>ለጥያቄ እና ለተጨማሪ መረጃ ያግኙን።</p>
-        </div>
-
-        <div class="contact-grid">
-
-          <div class="contact-card">
-            <div class="icon">☎️</div>
-            <h3>ዋና የጥያቄ ቁጥር</h3>
-            <p>ለጥያቄ ይደውሉ</p>
-            <a href="tel:2721">2721</a>
-          </div>
-
-          <div class="contact-card">
-            <div class="icon">📞</div>
-            <h3>ስልክ</h3>
-            <p>በስልክ ያግኙን</p>
-            <a href="tel:0962244464">0962244464</a>
-          </div>
-
-          <div class="contact-card">
-            <div class="icon">✉️</div>
-            <h3>Email</h3>
-            <p>በEmail ያግኙን</p>
-            <a href="mailto:ezrasamuel@2721gmail.com">
-              ezrasamuel@2721gmail.com
-            </a>
-          </div>
-
-        </div>
+      <div class="stat">
+        <h3>የዛሬ ጥያቄዎች</h3>
+        <strong id="todayQuestions">0</strong>
       </div>
-    </section>
 
-    <!-- DASHBOARD -->
-    <section class="dashboard" id="dashboard">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Dashboard</h2>
-          <p>በዚህ መሣሪያ የተላኩ ጥያቄዎችን ይመልከቱ።</p>
-        </div>
-
-        <div class="dashboard-box">
-
-          <div class="stats">
-
-            <div class="stat">
-              <strong id="totalQuestions">0</strong>
-              ጠቅላላ ጥያቄ
-            </div>
-
-            <div class="stat">
-              <strong id="todayQuestions">0</strong>
-              የዛሬ ጥያቄ
-            </div>
-
-            <div class="stat">
-              <strong>2721</strong>
-              የጥያቄ መስመር
-            </div>
-
-          </div>
-
-          <div id="questionList"></div>
-
-        </div>
+      <div class="stat">
+        <h3>2721</h3>
+        <strong>☎</strong>
       </div>
-    </section>
+    </div>
 
-  </main>
+    <div class="card">
+      <h3 style="margin-bottom:15px;">የተላኩ ጥያቄዎች</h3>
+      <div id="questionList">
+        ጥያቄዎች በመጫን ላይ...
+      </div>
+    </div>
+  </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>
-      © <span id="year"></span> ቤተ ሊቃውንት
-    </p>
+</main>
 
-    <p>
-      ኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን
-    </p>
-  </footer>
+<footer>
+  <p>© <span id="year"></span> ቤተ ሊቃውንት — መብቱ የተጠበቀ ነው።</p>
+</footer>
 
-  <script>
-    "use strict";
+<script>
+"use strict";
 
-    /* MOBILE MENU */
-    const menuBtn = document.getElementById("menuBtn");
-    const navMenu = document.getElementById("navMenu");
+/* ==============================
+   SUPABASE CONFIG
+   ============================== */
 
-    menuBtn.addEventListener("click", function ()
+/*
+  እዚህ የራስህን Supabase Project URL
+  እና Publishable Key አስገባ።
+*/
+
+const SUPABASE_URL = "YOUR_SUPABASE_PROJECT_URL";
+const SUPABASE_KEY = "YOUR_SUPABASE_PUBLISHABLE_KEY";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+
+/* ==============================
+   MOBILE MENU
+   ============================== */
+
+const menuBtn = document.getElementById("menuBtn");
+const navMenu = document.getElementById("navMenu");
+
+menuBtn.addEventListener("click", function () {
+  navMenu.classList.toggle("open");
+});
+
+document.querySelectorAll("#navMenu a").forEach(function (link) {
+  link.addEventListener("click", function () {
+    navMenu.classList.remove("open");
+  });
+});
+
+
+/* ==============================
+   YEAR
+   ============================== */
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+
+/* ==============================
+   SUBMIT QUESTION
+   ============================== */
+
+const questionForm = document.getElementById("questionForm");
+const submitQuestion = document.getElementById("submitQuestion");
+const successMessage = document.getElementById("successMessage");
+
+questionForm.addEventListener("submit", async function (event) {
+  event.preventDefault();
+
+  const name = document.getElementById("questionName").value.trim();
+  const subject = document.getElementById("questionSubject").value.trim();
+  const text = document.getElementById("questionText").value.trim();
+
+  if (!text) {
+    successMessage.style.display = "block";
+    successMessage.style.background = "#ffeaea";
+    successMessage.style.color = "#a00000";
+    successMessage.textContent = "እባክዎ ጥያቄዎን ያስገቡ።";
+    return;
+  }
+
+  submitQuestion.disabled = true;
+  submitQuestion.textContent = "በመላክ ላይ...";
+
+  let finalQuestion = text;
+
+  if (name) {
+    finalQuestion = "ስም: " + name + "\n" + finalQuestion;
+  }
+
+  if (subject) {
+    finalQuestion = "ርዕስ: " + subject + "\n" + finalQuestion;
+  }
+
+  const { error } = await supabaseClient
+    .from("questions")
+    .insert([
+      {
+        question: finalQuestion
+      }
+    ]);
+
+  if (error) {
+    console.error(error);
+
+    successMessage.style.display = "block";
+    successMessage.style.background = "#ffeaea";
+    successMessage.style.color = "#a00000";
+    successMessage.textContent =
+      "ጥያቄው አልተላከም። Supabase ግንኙነቱን ያረጋግጡ።";
+
+  } else {
+
+    successMessage.style.display = "block";
+    successMessage.style.background = "#e7f6e7";
+    successMessage.style.color = "#176b17";
+    successMessage.textContent =
+      "ጥያቄዎ በትክክል ተልኳል!";
+
+    questionForm.reset();
+
+    await loadQuestions();
+  }
+
+  submitQuestion.disabled = false;
+  submitQuestion.textContent = "ጥያቄ ላክ";
+});
+
+
+/* ==============================
+   LOAD QUESTIONS
+   ============================== */
+
+async function loadQuestions() {
+
+  const questionList = document.getElementById("questionList");
+
+  const { data, error } = await supabaseClient
+    .from("questions")
+    .select("id, created_at, question")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error(error);
+
+    questionList.innerHTML =
+      "<p>ጥያቄዎችን ማምጣት አልተቻለም።</p>";
+
+    return;
+  }
+
+  document.getElementById("totalQuestions").textContent =
+    data.length;
+
+  const today = new Date();
+
+  const todayCount = data.filter(function (item) {
+
+    const date = new Date(item.created_at);
+
+    return (
+      date.getFullYear() === today.getFullYear() &&
+      date.getMonth() === today.getMonth() &&
+      date.getDate() === today.getDate()
+    );
+
+  }).length;
+
+  document.getElementById("todayQuestions").textContent =
+    todayCount;
+
+  if (data.length === 0) {
+    questionList.innerHTML =
+      "<p>እስካሁን ምንም ጥያቄ የለም።</p>";
+
+    return;
+  }
+
+  questionList.innerHTML = "";
+
+  data.forEach(function (item) {
+
+    const div = document.createElement("div");
+    div.className = "question-item";
+
+    const question = document.createElement("p");
+    question.textContent = item.question;
+
+    const date = document.createElement("small");
+
+    date.textContent =
+      "ቀን: " +
+      new Date(item.created_at).toLocaleString("am-ET");
+
+    div.appendChild(question);
+    div.appendChild(date);
+
+    questionList.appendChild(div);
+  });
+}
+
+
+/* ==============================
+   RESOURCE SEARCH
+   ============================== */
+
+const searchInput = document.getElementById("searchInput");
+
+searchInput.addEventListener("input", function () {
+
+  const searchText =
+    searchInput.value.toLowerCase();
+
+  document.querySelectorAll(".resource").forEach(function (item) {
+
+    const content =
+      item.textContent.toLowerCase();
+
+    item.style.display =
+      content.includes(searchText)
+        ? "block"
+        : "none";
+  });
+});
+
+
+/* ==============================
+   START
+   ============================== */
+
+loadQuestions();
+
+</script>
+
+</body>
+</html>
