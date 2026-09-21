@@ -3,547 +3,120 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ቤተ ሊቃውንት | Bete-Liqawunt</title>
-
+  <title>የጥያቄ መቀበያ ገፅ</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
     body {
-      font-family: Arial, "Noto Sans Ethiopic", sans-serif;
-      background: #f5f1e6;
-      color: #183b2b;
-      line-height: 1.7;
-    }
-
-    header {
-      background: linear-gradient(135deg, #164a35, #286846);
-      color: white;
-      padding: 22px 16px;
-      text-align: center;
-    }
-
-    .logo {
-      width: 105px;
-      height: 105px;
-      margin: 0 auto 12px;
-      border: 3px solid #d6b35a;
-      border-radius: 50%;
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      padding: 20px;
       display: flex;
+      justify-content: center;
       align-items: center;
-      justify-content: center;
-      font-size: 48px;
-      background: #fff;
-      color: #164a35;
+      min-height: 100vh;
     }
-
-    .brand {
-      font-size: 27px;
-      font-weight: bold;
-      color: #f2d47b;
-    }
-
-    .subtitle {
-      margin-top: 5px;
-      font-size: 15px;
-    }
-
-    .number {
-      display: inline-block;
-      margin-top: 12px;
-      background: #d6b35a;
-      color: #173b2b;
-      padding: 7px 22px;
-      border-radius: 25px;
-      font-size: 25px;
-      font-weight: bold;
-    }
-
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: #123d2c;
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      padding: 9px;
-    }
-
-    nav button {
-      border: 0;
-      border-radius: 20px;
-      padding: 9px 14px;
-      background: transparent;
-      color: white;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-
-    nav button:hover, nav button.active {
-      background: #286846;
-    }
-
-    .lang {
-      background: #d6b35a !important;
-      color: #173b2b !important;
-      font-weight: bold;
-    }
-
-    main {
-      max-width: 900px;
-      margin: auto;
-      padding: 25px 15px 50px;
-    }
-
-    section {
-      background: white;
-      margin: 18px 0;
-      padding: 25px 18px;
-      border-radius: 18px;
-      box-shadow: 0 4px 15px rgba(0,0,0,.08);
-    }
-
-    .hero {
-      text-align: center;
-      background: linear-gradient(135deg, #fffdf6, #eee6ce);
-      padding: 35px 20px;
-    }
-
-    h1 {
-      font-size: 29px;
-      margin-bottom: 8px;
-      color: #164a35;
-    }
-
-    h2 {
-      color: #164a35;
-      margin-bottom: 12px;
-    }
-
-    .hero p {
-      font-size: 17px;
-    }
-
-    .call-btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 13px 30px;
-      background: #164a35;
-      color: white;
-      text-decoration: none;
-      border-radius: 30px;
-      font-size: 19px;
-      font-weight: bold;
-      transition: transform 0.2s ease;
-    }
-
-    .call-btn:hover {
-      transform: scale(1.05);
-    }
-
-    form {
-      display: grid;
-      gap: 13px;
-    }
-
-    label {
-      font-weight: bold;
-    }
-
-    input,
-    textarea {
+    .container {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      max-width: 500px;
       width: 100%;
-      padding: 13px;
-      border: 1px solid #c8c1ae;
-      border-radius: 10px;
-      font-size: 16px;
-      font-family: inherit;
     }
-
-    textarea {
-      min-height: 140px;
-      resize: vertical;
-    }
-
-    .submit-btn {
-      border: 0;
-      padding: 14px;
-      border-radius: 12px;
-      background: #164a35;
-      color: white;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-
-    .submit-btn:hover {
-      background: #286846;
-    }
-
-    .submit-btn:disabled {
-      opacity: .6;
-      cursor: not-allowed;
-    }
-
-    #status {
-      padding: 12px;
-      border-radius: 10px;
-      display: none;
+    h2 {
+      color: #333;
       text-align: center;
+      margin-bottom: 20px;
+    }
+    .contact-info {
+      background-color: #eef2f5;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+    }
+    .contact-info p {
+      margin: 8px 0;
+      color: #555;
+    }
+    .contact-info a {
+      color: #007bff;
+      text-decoration: none;
       font-weight: bold;
     }
-
-    .success {
-      display: block !important;
-      background: #e0f2e7;
-      color: #176238;
+    .contact-info a:hover {
+      text-decoration: underline;
     }
-
-    .error {
-      display: block !important;
-      background: #f9e0e0;
-      color: #9b2226;
-    }
-
-    .question-card {
-      border: 1px solid #ddd5c2;
-      border-radius: 12px;
-      padding: 14px;
-      margin: 10px 0;
-      background: #fffdf8;
-    }
-
-    .question-card h4 {
-      color: #164a35;
-      margin-bottom: 5px;
-    }
-
-    .question-card small {
-      color: #777;
-    }
-
-    .dashboard-controls {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+    .form-group {
       margin-bottom: 15px;
     }
-
-    .refresh-btn {
-      border: 0;
-      padding: 10px 17px;
-      border-radius: 20px;
-      background: #286846;
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #333;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    textarea {
+      height: 120px;
+      resize: vertical;
+    }
+    button {
+      width: 100%;
+      background-color: #28a745;
       color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
       cursor: pointer;
+      font-weight: bold;
     }
-
-    footer {
-      text-align: center;
-      background: #123d2c;
-      color: white;
-      padding: 25px 15px;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    @media (max-width: 600px) {
-      .brand {
-        font-size: 23px;
-      }
-
-      h1 {
-        font-size: 25px;
-      }
-
-      nav {
-        overflow-x: auto;
-        justify-content: flex-start;
-      }
+    button:hover {
+      background-color: #218838;
     }
   </style>
 </head>
-
 <body>
 
-<header>
-  <div class="logo">✝</div>
+<div class="container">
+  <h2>ጥያቄዎች ካሉዎት ይላኩልን</h2>
 
-  <div
-    class="brand"
-    data-am="ቤተ ሊቃውንት"
-    data-en="Bete-Liqawunt">
-    ቤተ ሊቃውንት
+  <!-- የአድራሻ እና ስልክ መረጃ -->
+  <div class="contact-info">
+    <p><strong>ስልክ፡</strong> <a href="tel:0962244464">0962244464</a></p>
+    <p><strong>ኢሜይል፡</strong> <a href="mailto:your-email@gmail.com">your-email@gmail.com</a></p>
   </div>
 
-  <div
-    class="subtitle"
-    data-am="የመንፈሳዊ ጥያቄና መልስ የጥሪ ማዕከል"
-    data-en="Spiritual Question and Answer Call Center">
-    የመንፈሳዊ ጥያቄና መልስ የጥሪ ማዕከል
-  </div>
-
-  <div class="number">2721</div>
-</header>
-
-<nav>
-  <button id="nav-home" class="active" onclick="goTo('home')" data-am="መነሻ" data-en="Home">መነሻ</button>
-  <button id="nav-ask" onclick="goTo('ask')" data-am="ጥያቄ ይጠይቁ" data-en="Ask a Question">ጥያቄ ይጠይቁ</button>
-  <button id="nav-dashboard" onclick="goTo('dashboard')" data-am="Dashboard" data-en="Dashboard">Dashboard</button>
-  <button class="lang" onclick="toggleLanguage()">En</button>
-</nav>
-
-<main>
-
-  <section id="home" class="hero">
-    <h1
-      data-am="ማንኛውንም ጥያቄ ይጠይቁ"
-      data-en="Ask Any Spiritual Question">
-      ማንኛውንም ጥያቄ ይጠይቁ
-    </h1>
-
-    <p
-      data-am="መንፈሳዊ ሕይወትዎን በእውቀት ይደግፉ"
-      data-en="Strengthen your spiritual life through knowledge">
-      መንፈሳዊ ሕይወትዎን በእውቀት ይደግፉ
-    </p>
-
-    <a class="call-btn" href="tel:2721">📞 2721</a>
-  </section>
-
-  <section id="ask">
-    <h2
-      data-am="መንፈሳዊ ጥያቄዎን ይላኩ"
-      data-en="Send Your Spiritual Question">
-      መንፈሳዊ ጥያቄዎን ይላኩ
-    </h2>
-
-    <form id="questionForm">
-
-      <div>
-        <label
-          for="name"
-          data-am="ስም"
-          data-en="Name">
-          ስም
-        </label>
-        <input id="name" type="text" placeholder="ስምዎን ያስገቡ">
-      </div>
-
-      <div>
-        <label
-          for="email"
-          data-am="Email"
-          data-en="Email">
-          Email
-        </label>
-        <input id="email" type="email" placeholder="Email">
-      </div>
-
-      <div>
-        <label
-          for="question"
-          data-am="ጥያቄ"
-          data-en="Question">
-          ጥያቄ
-        </label>
-        <textarea
-          id="question"
-          required
-          placeholder="ጥያቄዎን በዝርዝር ይጻፉ..."></textarea>
-      </div>
-
-      <button
-        id="submitBtn"
-        class="submit-btn"
-        type="submit"
-        data-am="ጥያቄውን ላክ"
-        data-en="Send Question">
-        ጥያቄውን ላክ
-      </button>
-
-      <div id="status"></div>
-    </form>
-  </section>
-
-  <section id="dashboard">
-    <h2
-      data-am="የተመዘገቡ ጥያቄዎች"
-      data-en="Submitted Questions">
-      የተመዘገቡ ጥያቄዎች
-    </h2>
-
-    <div class="dashboard-controls">
-      <button class="refresh-btn" onclick="loadQuestions()">
-        🔄 <span data-am="አድስ" data-en="Refresh">አድስ</span>
-      </button>
+  <!-- የጥያቄ መላኪያ ፎርም -->
+  <!-- ማስታወሻ፡ YOUR_FORM_ID በሚለው ቦታ ከ formspree.io ያገኘኸውን ID ታስገባለህ -->
+  <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <div class="form-group">
+      <label for="name">ስምዎን ያስገቡ፡</label>
+      <input type="text" id="name" name="name" placeholder="ሙሉ ስም" required>
     </div>
 
-    <div id="questionsList">
-      ጥያቄዎችን በመጫን ላይ...
+    <div class="form-group">
+      <label for="email">ኢሜይልዎን ያስገቡ፡</label>
+      <input type="email" id="email" name="_replyto" placeholder="example@gmail.com" required>
     </div>
-  </section>
 
-  <section id="contact">
-    <h2
-      data-am="እኛን ለማግኘት"
-      data-en="Contact Us">
-      እኛን ለማግኘት
-    </h2>
+    <div class="form-group">
+      <label for="message">ጥያቄዎ፡</label>
+      <textarea id="message" name="message" placeholder="ጥያቄዎን እዚህ ጋር ይፃፉ..." required></textarea>
+    </div>
 
-    <p>📞 0962244464</p>
-    <p>📞 2721</p>
-    <p>✉️ ezrasamuel@2721gmail.com</p>
-    <p>📍 Addis Ababa, Ethiopia</p>
-  </section>
-
-</main>
-
-<footer>
-  <div
-    data-am="ቤተ ሊቃውንት © 2026 - መብቱ በሕግ የተጠበቀ ነው"
-    data-en="Bete-Liqawunt © 2026 - All Rights Reserved">
-    ቤተ ሊቃውንት © 2026 - መብቱ በሕግ የተጠበቀ ነው
-  </div>
-</footer>
-
-<script>
-  let currentLang = 'am';
-  // ጥያቄዎች እንዲቀመጡ የሚፈልጉበት የ Google Apps Script URL ካለዎት እዚህ ይተኩት
-  const API_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
-
-  function goTo(sectionId) {
-    const el = document.getElementById(sectionId);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-    const activeNav = document.getElementById(`nav-${sectionId}`);
-    if (activeNav) activeNav.classList.add('active');
-
-    if (sectionId === 'dashboard') {
-      loadQuestions();
-    }
-  }
-
-  function toggleLanguage() {
-    currentLang = currentLang === 'am' ? 'en' : 'am';
-    const langBtn = document.querySelector('nav .lang');
-    langBtn.textContent = currentLang === 'am' ? 'En' : 'Am';
-
-    document.querySelectorAll('[data-am]').forEach(el => {
-      const text = el.getAttribute(`data-${currentLang}`);
-      if (text) {
-        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-          el.placeholder = text;
-        } else {
-          el.textContent = text;
-        }
-      }
-    });
-  }
-
-  document.getElementById('questionForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-
-    const submitBtn = document.getElementById('submitBtn');
-    const statusDiv = document.getElementById('status');
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const question = document.getElementById('question').value;
-
-    submitBtn.disabled = true;
-    statusDiv.className = '';
-    statusDiv.style.display = 'block';
-    statusDiv.textContent = currentLang === 'am' ? 'እየተላከ ነው...' : 'Sending...';
-
-    const payload = {
-      name: name || (currentLang === 'am' ? 'ያልተገለጸ' : 'Anonymous'),
-      email: email || 'N/A',
-      question: question,
-      timestamp: new Date().toLocaleString()
-    };
-
-    try {
-      if (API_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL') {
-        await fetch(API_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-      }
-
-      saveLocalQuestion(payload);
-
-      statusDiv.className = 'success';
-      statusDiv.textContent = currentLang === 'am' 
-        ? 'ጥያቄዎ በተሳካ ሁኔታ ተልኳል!' 
-        : 'Your question has been sent successfully!';
-      
-      document.getElementById('questionForm').reset();
-      loadQuestions();
-    } catch (err) {
-      statusDiv.className = 'error';
-      statusDiv.textContent = currentLang === 'am' 
-        ? 'ስህተት ተፈጥሯል። እባክዎ እንደገና ይሞክሩ።' 
-        : 'An error occurred. Please try again.';
-    } finally {
-      submitBtn.disabled = false;
-    }
-  });
-
-  function saveLocalQuestion(data) {
-    let questions = JSON.parse(localStorage.getItem('questions') || '[]');
-    questions.unshift(data);
-    localStorage.setItem('questions', JSON.stringify(questions));
-  }
-
-  async function loadQuestions() {
-    const listDiv = document.getElementById('questionsList');
-    listDiv.textContent = currentLang === 'am' ? 'ጥያቄዎችን በመጫን ላይ...' : 'Loading questions...';
-
-    let questions = [];
-
-    if (API_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL') {
-      try {
-        const res = await fetch(API_URL);
-        questions = await res.json();
-      } catch (e) {
-        questions = JSON.parse(localStorage.getItem('questions') || '[]');
-      }
-    } else {
-      questions = JSON.parse(localStorage.getItem('questions') || '[]');
-    }
-
-    if (questions.length === 0) {
-      listDiv.textContent = currentLang === 'am' 
-        ? 'ምንም የተመዘገበ ጥያቄ የለም።' 
-        : 'No questions submitted yet.';
-      return;
-    }
-
-    listDiv.innerHTML = questions.map(q => `
-      <div class="question-card">
-        <h4>${q.name}</h4>
-        <p>${q.question}</p>
-        <small>🕒 ${q.timestamp}</small>
-      </div>
-    `).join('');
-  }
-
-  // ገጹ ሲከፈት ጥያቄዎች ካሉ ያሳያል
-  loadQuestions();
-</script>
+    <button type="submit">ጥያቄውን ላክ</button>
+  </form>
+</div>
 
 </body>
 </html>
