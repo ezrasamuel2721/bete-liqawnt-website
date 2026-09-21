@@ -3,10 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ቤተ ሊቃውንት</title>
-
-  <!-- Supabase -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <title>ቤተ ሊቃውንት | Bete-Liqawunt</title>
 
   <style>
     * {
@@ -17,116 +14,138 @@
 
     body {
       font-family: Arial, "Noto Sans Ethiopic", sans-serif;
-      background: #f7f8fa;
-      color: #222;
+      background: #f5f1e6;
+      color: #183b2b;
       line-height: 1.7;
     }
 
     header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: #ffffff;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .nav {
-      max-width: 1100px;
-      margin: auto;
-      min-height: 70px;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      background: linear-gradient(135deg, #164a35, #286846);
+      color: white;
+      padding: 22px 16px;
+      text-align: center;
     }
 
     .logo {
-      font-size: 24px;
-      font-weight: bold;
-      color: #7a4b16;
-    }
-
-    .menu-btn {
-      display: none;
-      border: none;
-      background: none;
-      font-size: 28px;
-      cursor: pointer;
-    }
-
-    nav {
-      display: flex;
-      gap: 18px;
-      align-items: center;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      color: #8a5a20;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, #fff7e6, #f2e2c4);
-      text-align: center;
-      padding: 75px 20px;
-    }
-
-    .hero-logo {
-      width: 90px;
-      height: 90px;
-      margin: 0 auto 20px;
-      border: 3px solid #7a4b16;
+      width: 105px;
+      height: 105px;
+      margin: 0 auto 12px;
+      border: 3px solid #d6b35a;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 40px;
+      font-size: 48px;
+      background: #fff;
+      color: #164a35;
     }
 
-    .hero h1 {
-      font-size: 42px;
-      color: #6d4314;
+    .brand {
+      font-size: 27px;
+      font-weight: bold;
+      color: #f2d47b;
+    }
+
+    .subtitle {
+      margin-top: 5px;
+      font-size: 15px;
+    }
+
+    .number {
+      display: inline-block;
+      margin-top: 12px;
+      background: #d6b35a;
+      color: #173b2b;
+      padding: 7px 22px;
+      border-radius: 25px;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #123d2c;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px;
+    }
+
+    nav button {
+      border: 0;
+      border-radius: 20px;
+      padding: 9px 14px;
+      background: transparent;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    nav button:hover {
+      background: #286846;
+    }
+
+    .lang {
+      background: #d6b35a !important;
+      color: #173b2b !important;
+      font-weight: bold;
+    }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 25px 15px 50px;
+    }
+
+    section {
+      background: white;
+      margin: 18px 0;
+      padding: 25px 18px;
+      border-radius: 18px;
+      box-shadow: 0 4px 15px rgba(0,0,0,.08);
+    }
+
+    .hero {
+      text-align: center;
+      background: linear-gradient(135deg, #fffdf6, #eee6ce);
+      padding: 35px 20px;
+    }
+
+    h1 {
+      font-size: 29px;
+      margin-bottom: 8px;
+      color: #164a35;
+    }
+
+    h2 {
+      color: #164a35;
       margin-bottom: 12px;
     }
 
     .hero p {
-      font-size: 18px;
-      color: #555;
+      font-size: 17px;
     }
 
-    section {
-      max-width: 1100px;
-      margin: auto;
-      padding: 55px 20px;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #6d4314;
-      font-size: 30px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 14px;
-      padding: 25px;
-      box-shadow: 0 4px 18px rgba(0,0,0,.08);
+    .call-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 13px 30px;
+      background: #164a35;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-size: 19px;
+      font-weight: bold;
     }
 
     form {
-      max-width: 750px;
-      margin: auto;
+      display: grid;
+      gap: 13px;
     }
 
     label {
-      display: block;
-      margin: 15px 0 6px;
       font-weight: bold;
     }
 
@@ -134,8 +153,8 @@
     textarea {
       width: 100%;
       padding: 13px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      border: 1px solid #c8c1ae;
+      border-radius: 10px;
       font-size: 16px;
       font-family: inherit;
     }
@@ -145,132 +164,92 @@
       resize: vertical;
     }
 
-    button.submit-btn {
-      margin-top: 18px;
-      padding: 13px 25px;
-      border: none;
-      border-radius: 8px;
-      background: #7a4b16;
+    .submit-btn {
+      border: 0;
+      padding: 14px;
+      border-radius: 12px;
+      background: #164a35;
       color: white;
-      font-size: 16px;
+      font-size: 17px;
+      font-weight: bold;
       cursor: pointer;
     }
 
-    button.submit-btn:hover {
-      background: #5e380e;
+    .submit-btn:disabled {
+      opacity: .6;
     }
 
-    #successMessage {
-      display: none;
-      margin-top: 15px;
+    #status {
       padding: 12px;
-      border-radius: 8px;
-      background: #e7f6e7;
-      color: #176b17;
-    }
-
-    .search-box {
-      max-width: 650px;
-      margin: auto auto 25px;
-    }
-
-    .resources {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-
-    .resource {
-      background: white;
-      padding: 22px;
-      border-radius: 12px;
-      box-shadow: 0 3px 14px rgba(0,0,0,.07);
-    }
-
-    .about {
-      max-width: 850px;
-      margin: auto;
-      text-align: center;
-    }
-
-    .contact {
-      text-align: center;
-    }
-
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-bottom: 25px;
-    }
-
-    .stat {
-      background: white;
-      padding: 25px;
-      text-align: center;
-      border-radius: 12px;
-      box-shadow: 0 3px 14px rgba(0,0,0,.07);
-    }
-
-    .stat h3 {
-      color: #777;
-      font-size: 16px;
-    }
-
-    .stat strong {
-      display: block;
-      margin-top: 8px;
-      font-size: 32px;
-      color: #7a4b16;
-    }
-
-    .question-item {
-      background: white;
-      margin-bottom: 12px;
-      padding: 18px;
       border-radius: 10px;
-      border-left: 4px solid #7a4b16;
+      display: none;
+      text-align: center;
+      font-weight: bold;
     }
 
-    .question-item small {
+    .success {
+      display: block !important;
+      background: #e0f2e7;
+      color: #176238;
+    }
+
+    .error {
+      display: block !important;
+      background: #f9e0e0;
+      color: #9b2226;
+    }
+
+    .question-card {
+      border: 1px solid #ddd5c2;
+      border-radius: 12px;
+      padding: 14px;
+      margin: 10px 0;
+      background: #fffdf8;
+    }
+
+    .question-card small {
       color: #777;
+    }
+
+    .dashboard-controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    .refresh-btn {
+      border: 0;
+      padding: 10px 17px;
+      border-radius: 20px;
+      background: #286846;
+      color: white;
+      cursor: pointer;
     }
 
     footer {
-      background: #292929;
-      color: white;
       text-align: center;
+      background: #123d2c;
+      color: white;
       padding: 25px 15px;
-      margin-top: 30px;
     }
 
-    @media (max-width: 750px) {
-      .menu-btn {
-        display: block;
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .brand {
+        font-size: 23px;
+      }
+
+      h1 {
+        font-size: 25px;
       }
 
       nav {
-        display: none;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        right: 0;
-        background: white;
-        flex-direction: column;
-        padding: 20px;
-        border-bottom: 1px solid #ddd;
-      }
-
-      nav.open {
-        display: flex;
-      }
-
-      .hero h1 {
-        font-size: 32px;
-      }
-
-      .dashboard-grid {
-        grid-template-columns: 1fr;
+        overflow-x: auto;
+        justify-content: flex-start;
       }
     }
   </style>
@@ -279,353 +258,138 @@
 <body>
 
 <header>
-  <div class="nav">
-    <div class="logo">ቤተ ሊቃውንት</div>
+  <div class="logo">✝</div>
 
-    <button class="menu-btn" id="menuBtn">☰</button>
-
-    <nav id="navMenu">
-      <a href="#home">መነሻ</a>
-      <a href="#ask">ጥያቄ ይጠይቁ</a>
-      <a href="#resources">መረጃዎች</a>
-      <a href="#about">ስለ እኛ</a>
-      <a href="#contact">ያግኙን</a>
-      <a href="#dashboard">Dashboard</a>
-    </nav>
+  <div
+    class="brand"
+    data-am="ቤተ ሊቃውንት"
+    data-en="Bete-Liqawunt">
+    ቤተ ሊቃውንት
   </div>
+
+  <div
+    class="subtitle"
+    data-am="የመንፈሳዊ ጥያቄና መልስ የጥሪ ማዕከል"
+    data-en="Spiritual Question and Answer Call Center">
+    የመንፈሳዊ ጥያቄና መልስ የጥሪ ማዕከል
+  </div>
+
+  <div class="number">2721</div>
 </header>
+
+<nav>
+  <button onclick="goTo('home')" data-am="መነሻ" data-en="Home">መነሻ</button>
+  <button onclick="goTo('ask')" data-am="ጥያቄ ይጠይቁ" data-en="Ask a Question">ጥያቄ ይጠይቁ</button>
+  <button onclick="goTo('dashboard')" data-am="Dashboard" data-en="Dashboard">Dashboard</button>
+  <button class="lang" onclick="toggleLanguage()">En</button>
+</nav>
 
 <main>
 
-  <section class="hero" id="home">
-    <div class="hero-logo">✝</div>
-    <h1>ቤተ ሊቃውንት</h1>
-    <p>የእውቀት፣ የጥያቄና የመረጃ ማዕከል</p>
+  <section id="home" class="hero">
+    <h1
+      data-am="ማንኛውንም ጥያቄ ይጠይቁ"
+      data-en="Ask Any Spiritual Question">
+      ማንኛውንም ጥያቄ ይጠይቁ
+    </h1>
+
+    <p
+      data-am="መንፈሳዊ ሕይወትዎን በእውቀት ይደግፉ"
+      data-en="Strengthen your spiritual life through knowledge">
+      መንፈሳዊ ሕይወትዎን በእውቀት ይደግፉ
+    </p>
+
+    <a class="call-btn" href="tel:2721">📞 2721</a>
   </section>
 
   <section id="ask">
-    <h2 class="section-title">ጥያቄ ይጠይቁ</h2>
+    <h2
+      data-am="መንፈሳዊ ጥያቄዎን ይላኩ"
+      data-en="Send Your Spiritual Question">
+      መንፈሳዊ ጥያቄዎን ይላኩ
+    </h2>
 
-    <div class="card">
-      <form id="questionForm">
+    <form id="questionForm">
 
-        <label for="questionName">ስም</label>
-        <input id="questionName" type="text" placeholder="ስምዎን ያስገቡ">
-
-        <label for="questionSubject">ርዕስ</label>
-        <input id="questionSubject" type="text" placeholder="የጥያቄውን ርዕስ ያስገቡ">
-
-        <label for="questionText">ጥያቄ</label>
-        <textarea id="questionText" placeholder="ጥያቄዎን እዚህ ይጻፉ..." required></textarea>
-
-        <button class="submit-btn" id="submitQuestion" type="submit">
-          ጥያቄ ላክ
-        </button>
-
-        <div id="successMessage"></div>
-      </form>
-    </div>
-  </section>
-
-  <section id="resources">
-    <h2 class="section-title">መረጃዎች</h2>
-
-    <div class="search-box">
-      <input id="searchInput" type="search" placeholder="መረጃ ይፈልጉ...">
-    </div>
-
-    <div class="resources" id="resourceList">
-      <div class="resource">
-        <h3>የእውቀት ማዕከል</h3>
-        <p>ጠቃሚ መረጃዎችን እዚህ ያግኙ።</p>
+      <div>
+        <label
+          for="name"
+          data-am="ስም"
+          data-en="Name">
+          ስም
+        </label>
+        <input id="name" type="text" placeholder="ስምዎን ያስገቡ">
       </div>
 
-      <div class="resource">
-        <h3>ጥያቄና መልስ</h3>
-        <p>ጥያቄዎን ይላኩና መልስ ይፈልጉ።</p>
+      <div>
+        <label
+          for="email"
+          data-am="Email"
+          data-en="Email">
+          Email
+        </label>
+        <input id="email" type="email" placeholder="Email">
       </div>
 
-      <div class="resource">
-        <h3>ትምህርታዊ መረጃ</h3>
-        <p>የተለያዩ ጠቃሚ ምንጮችን ይዳስሱ።</p>
+      <div>
+        <label
+          for="question"
+          data-am="ጥያቄ"
+          data-en="Question">
+          ጥያቄ
+        </label>
+        <textarea
+          id="question"
+          required
+          placeholder="ጥያቄዎን በዝርዝር ይጻፉ..."></textarea>
       </div>
-    </div>
-  </section>
 
-  <section id="about">
-    <h2 class="section-title">ስለ እኛ</h2>
-    <div class="about card">
-      <p>
-        ቤተ ሊቃውንት እውቀትን፣ ጥያቄንና መረጃን
-        በቀላሉ ለማግኘት የተዘጋጀ የመረጃ መድረክ ነው።
-      </p>
-    </div>
-  </section>
+      <button
+        id="submitBtn"
+        class="submit-btn"
+        type="submit"
+        data-am="ጥያቄውን ላክ"
+        data-en="Send Question">
+        ጥያቄውን ላክ
+      </button>
 
-  <section id="contact">
-    <h2 class="section-title">ያግኙን</h2>
-    <div class="contact card">
-      <p>📞 2721</p>
-      <p>📞 0962244464</p>
-      <p>✉️ ezrasamuel@2721gmail.com</p>
-    </div>
+      <div id="status"></div>
+    </form>
   </section>
 
   <section id="dashboard">
-    <h2 class="section-title">Dashboard</h2>
+    <h2
+      data-am="የተመዘገቡ ጥያቄዎች"
+      data-en="Submitted Questions">
+      የተመዘገቡ ጥያቄዎች
+    </h2>
 
-    <div class="dashboard-grid">
-      <div class="stat">
-        <h3>ጠቅላላ ጥያቄዎች</h3>
-        <strong id="totalQuestions">0</strong>
-      </div>
-
-      <div class="stat">
-        <h3>የዛሬ ጥያቄዎች</h3>
-        <strong id="todayQuestions">0</strong>
-      </div>
-
-      <div class="stat">
-        <h3>2721</h3>
-        <strong>☎</strong>
-      </div>
+    <div class="dashboard-controls">
+      <button class="refresh-btn" onclick="loadQuestions()">
+        🔄 <span data-am="አድስ" data-en="Refresh">አድስ</span>
+      </button>
     </div>
 
-    <div class="card">
-      <h3 style="margin-bottom:15px;">የተላኩ ጥያቄዎች</h3>
-      <div id="questionList">
-        ጥያቄዎች በመጫን ላይ...
-      </div>
+    <div id="questionsList">
+      ጥያቄዎችን በመጫን ላይ...
     </div>
+  </section>
+
+  <section>
+    <h2
+      data-am="እኛን ለማግኘት"
+      data-en="Contact Us">
+      እኛን ለማግኘት
+    </h2>
+
+    <p>📞 0962244464</p>
+    <p>📞 2721</p>
+    <p>✉️ ezrasamuel@2721gmail.com</p>
+    <p>📍 Addis Ababa, Ethiopia</p>
   </section>
 
 </main>
 
 <footer>
-  <p>© <span id="year"></span> ቤተ ሊቃውንት — መብቱ የተጠበቀ ነው።</p>
-</footer>
-
-<script>
-"use strict";
-
-/* ==============================
-   SUPABASE CONFIG
-   ============================== */
-
-/*
-  እዚህ የራስህን Supabase Project URL
-  እና Publishable Key አስገባ።
-*/
-
-const SUPABASE_URL = "YOUR_SUPABASE_PROJECT_URL";
-const SUPABASE_KEY = "YOUR_SUPABASE_PUBLISHABLE_KEY";
-
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-
-
-/* ==============================
-   MOBILE MENU
-   ============================== */
-
-const menuBtn = document.getElementById("menuBtn");
-const navMenu = document.getElementById("navMenu");
-
-menuBtn.addEventListener("click", function () {
-  navMenu.classList.toggle("open");
-});
-
-document.querySelectorAll("#navMenu a").forEach(function (link) {
-  link.addEventListener("click", function () {
-    navMenu.classList.remove("open");
-  });
-});
-
-
-/* ==============================
-   YEAR
-   ============================== */
-
-document.getElementById("year").textContent = new Date().getFullYear();
-
-
-/* ==============================
-   SUBMIT QUESTION
-   ============================== */
-
-const questionForm = document.getElementById("questionForm");
-const submitQuestion = document.getElementById("submitQuestion");
-const successMessage = document.getElementById("successMessage");
-
-questionForm.addEventListener("submit", async function (event) {
-  event.preventDefault();
-
-  const name = document.getElementById("questionName").value.trim();
-  const subject = document.getElementById("questionSubject").value.trim();
-  const text = document.getElementById("questionText").value.trim();
-
-  if (!text) {
-    successMessage.style.display = "block";
-    successMessage.style.background = "#ffeaea";
-    successMessage.style.color = "#a00000";
-    successMessage.textContent = "እባክዎ ጥያቄዎን ያስገቡ።";
-    return;
-  }
-
-  submitQuestion.disabled = true;
-  submitQuestion.textContent = "በመላክ ላይ...";
-
-  let finalQuestion = text;
-
-  if (name) {
-    finalQuestion = "ስም: " + name + "\n" + finalQuestion;
-  }
-
-  if (subject) {
-    finalQuestion = "ርዕስ: " + subject + "\n" + finalQuestion;
-  }
-
-  const { error } = await supabaseClient
-    .from("questions")
-    .insert([
-      {
-        question: finalQuestion
-      }
-    ]);
-
-  if (error) {
-    console.error(error);
-
-    successMessage.style.display = "block";
-    successMessage.style.background = "#ffeaea";
-    successMessage.style.color = "#a00000";
-    successMessage.textContent =
-      "ጥያቄው አልተላከም። Supabase ግንኙነቱን ያረጋግጡ።";
-
-  } else {
-
-    successMessage.style.display = "block";
-    successMessage.style.background = "#e7f6e7";
-    successMessage.style.color = "#176b17";
-    successMessage.textContent =
-      "ጥያቄዎ በትክክል ተልኳል!";
-
-    questionForm.reset();
-
-    await loadQuestions();
-  }
-
-  submitQuestion.disabled = false;
-  submitQuestion.textContent = "ጥያቄ ላክ";
-});
-
-
-/* ==============================
-   LOAD QUESTIONS
-   ============================== */
-
-async function loadQuestions() {
-
-  const questionList = document.getElementById("questionList");
-
-  const { data, error } = await supabaseClient
-    .from("questions")
-    .select("id, created_at, question")
-    .order("created_at", { ascending: false });
-
-  if (error) {
-    console.error(error);
-
-    questionList.innerHTML =
-      "<p>ጥያቄዎችን ማምጣት አልተቻለም።</p>";
-
-    return;
-  }
-
-  document.getElementById("totalQuestions").textContent =
-    data.length;
-
-  const today = new Date();
-
-  const todayCount = data.filter(function (item) {
-
-    const date = new Date(item.created_at);
-
-    return (
-      date.getFullYear() === today.getFullYear() &&
-      date.getMonth() === today.getMonth() &&
-      date.getDate() === today.getDate()
-    );
-
-  }).length;
-
-  document.getElementById("todayQuestions").textContent =
-    todayCount;
-
-  if (data.length === 0) {
-    questionList.innerHTML =
-      "<p>እስካሁን ምንም ጥያቄ የለም።</p>";
-
-    return;
-  }
-
-  questionList.innerHTML = "";
-
-  data.forEach(function (item) {
-
-    const div = document.createElement("div");
-    div.className = "question-item";
-
-    const question = document.createElement("p");
-    question.textContent = item.question;
-
-    const date = document.createElement("small");
-
-    date.textContent =
-      "ቀን: " +
-      new Date(item.created_at).toLocaleString("am-ET");
-
-    div.appendChild(question);
-    div.appendChild(date);
-
-    questionList.appendChild(div);
-  });
-}
-
-
-/* ==============================
-   RESOURCE SEARCH
-   ============================== */
-
-const searchInput = document.getElementById("searchInput");
-
-searchInput.addEventListener("input", function () {
-
-  const searchText =
-    searchInput.value.toLowerCase();
-
-  document.querySelectorAll(".resource").forEach(function (item) {
-
-    const content =
-      item.textContent.toLowerCase();
-
-    item.style.display =
-      content.includes(searchText)
-        ? "block"
-        : "none";
-  });
-});
-
-
-/* ==============================
-   START
-   ============================== */
-
-loadQuestions();
-
-</script>
-
-</body>
-</html>
+  <div
+    data-am="ቤተ ሊቃውንት
