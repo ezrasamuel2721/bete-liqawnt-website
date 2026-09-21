@@ -3,356 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ቤተ ሊቃውንት - የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተ ክርስቲያን</title>
+    <title>የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተ ክርስቲያን</title>
     <style>
-        /* CSS Styles - መንፈሳዊ የዲዛይን ጭብጥ */
+        /* የዲዛይንና ቀለማት መሠረት (Variables) */
         :root {
-            --primary-color: #8B0000; /* ጥልቅ ቀይ / ወይን ጠጅ */
-            --secondary-color: #DAA520; /* ወርቃማ */
-            --bg-color: #FDFBF7; /* የብራና መልክ ያለው ነጭ */
-            --text-color: #2C221E;
-            --dark-green: #1B4D3E;
+            --primary-gold: #D4AF37;
+            --accent-green: #1B4D3E;
+            --accent-red: #800020;
+            --bg-light: #FAF9F6;
+            --text-dark: #2C2C2C;
+            --white: #FFFFFF;
         }
 
         body {
-            font-family: 'Ethiopic', 'Noto Sans Ethiopic', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
             margin: 0;
             padding: 0;
+            font-family: 'Ethiopic', 'Noto Sans Ethiopic', 'Abyssinica SIL', Arial, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
             line-height: 1.6;
         }
 
-        /* Header & Navigation */
+        /* የበላይ አሞሌ (Header & Navigation) */
         header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 15px 20px;
-            border-bottom: 5px solid var(--secondary-color);
-        }
-
-        .header-container {
+            background-color: var(--accent-green);
+            border-bottom: 4px solid var(--primary-gold);
+            color: var(--white);
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            flex-wrap: wrap;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
-        .logo-section {
+        .logo-container {
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
-        .cross-logo {
-            font-size: 40px;
-            color: var(--secondary-color);
+        /* የኢትዮጵያ መስቀል ምስል/ምልክት */
+        .cross-icon {
+            font-size: 2.2rem;
+            color: var(--primary-gold);
         }
 
-        .title-area h1 {
+        .site-title h1 {
             margin: 0;
             font-size: 1.4rem;
-            color: var(--secondary-color);
+            color: var(--primary-gold);
         }
 
-        .title-area h2 {
+        .site-title p {
             margin: 0;
-            font-size: 1.1rem;
-            font-weight: normal;
+            font-size: 0.85rem;
+            opacity: 0.9;
         }
 
-        /* Language Selector & Menu */
-        .top-controls {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .lang-select {
-            padding: 5px 10px;
-            border-radius: 4px;
-            border: 1px solid var(--secondary-color);
-            background: white;
+        /* የቋንቋ መለወጫ ቁልፍ */
+        .lang-btn {
+            background-color: transparent;
+            border: 2px solid var(--primary-gold);
+            color: var(--primary-gold);
+            padding: 8px 16px;
             font-weight: bold;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 15px;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        /* Banner Banner Section */
-        .hero-banner {
-            background: linear-gradient(rgba(27, 77, 62, 0.8), rgba(139, 0, 0, 0.8)), url('https://via.placeholder.com/1200x300') center/cover;
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        .hero-banner h3 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            color: var(--secondary-color);
-        }
-
-        .motto {
-            font-size: 1.5rem;
-            font-style: italic;
-            margin-top: 10px;
-            background-color: rgba(0,0,0,0.3);
-            display: inline-block;
-            padding: 5px 20px;
             border-radius: 20px;
-            border: 1px solid var(--secondary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .hotline-box {
-            margin-top: 15px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #FFF;
+        .lang-btn:hover {
+            background-color: var(--primary-gold);
+            color: var(--accent-green);
         }
 
-        /* Main Content Layout */
+        /* የዋናው ገጽ ዲዛይን (Hero Section) */
+        .hero {
+            background: linear-gradient(rgba(27, 77, 62, 0.85), rgba(128, 0, 32, 0.75)), url('https://images.unsplash.com/photo-1548625149-fc4a29cf7092?q=80') center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 1rem;
+            border-bottom: 3px solid var(--primary-gold);
+        }
+
+        .hero h2 {
+            font-size: 2.2rem;
+            color: var(--primary-gold);
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* የይዘት ሳጥን (Container) */
         .container {
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 30px;
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-        }
-
+        /* የመረጃ ካርዶች (Cards) */
         .card {
-            background: white;
-            padding: 25px;
+            background: var(--white);
+            border-top: 4px solid var(--accent-red);
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border-top: 4px solid var(--primary-color);
-            margin-bottom: 25px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
         }
 
         .card h3 {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--secondary-color);
+            color: var(--accent-green);
+            border-bottom: 2px solid var(--primary-gold);
             padding-bottom: 8px;
             margin-top: 0;
         }
 
-        /* Form Styling */
-        .form-group {
-            margin-bottom: 15px;
+        /* የስልክ እና ኢሜይል ሊንኮች ዲዛይን */
+        .contact-list {
+            list-style: none;
+            padding: 0;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
+        .contact-list li {
+            margin: 15px 0;
+            font-size: 1.1rem;
+        }
+
+        .contact-link {
+            color: var(--accent-red);
+            text-decoration: none;
             font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #fdf8ef;
+            border: 1px solid #f3e5c8;
+            transition: background 0.3s ease;
+            display: inline-block;
         }
 
-        .form-group input, 
-        .form-group textarea, 
-        .form-group select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
+        .contact-link:hover {
+            background-color: var(--primary-gold);
+            color: var(--accent-green);
         }
 
-        button.btn-submit {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-        }
-
-        button.btn-submit:hover {
-            background-color: var(--dark-green);
-        }
-
-        /* Response Display Box */
-        .answer-box {
-            background-color: #F4F6F6;
-            border-left: 4px solid var(--dark-green);
-            padding: 15px;
-            margin-top: 15px;
-        }
-
-        /* Footer */
+        /* የእግረ-ገጽ (Footer) ዲዛይን */
         footer {
-            background-color: var(--text-color);
-            color: white;
+            background-color: var(--accent-green);
+            color: var(--white);
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-            border-top: 3px solid var(--secondary-color);
-        }
-
-        .contact-info {
-            margin-top: 10px;
-            font-weight: bold;
-            color: var(--secondary-color);
+            padding: 1.5rem;
+            border-top: 4px solid var(--primary-gold);
+            margin-top: 3rem;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
+    <!-- መሪ እና የቋንቋ መለወጫ -->
     <header>
-        <div class="header-container">
-            <div class="logo-section">
-                <div class="cross-logo">☦</div>
-                <div class="title-area">
-                    <h1>የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተ ክርስቲያን</h1>
-                    <h2>ቤተ ሊቃውንት</h2>
-                </div>
-            </div>
-            
-            <div class="top-controls">
-                <!-- Language Selector -->
-                <select class="lang-select" id="languageSelect">
-                    <option value="am">አማርኛ (Am)</option>
-                    <option value="en">English (En)</option>
-                    <option value="om">Afaan Oromoo</option>
-                    <option value="sid">Sidaamu Afoo</option>
-                </select>
-
-                <!-- Navigation Menu -->
-                <nav>
-                    <ul>
-                        <li><a href="#about">ስለ እኛ</a></li>
-                        <li><a href="#ask">ጥያቄ ለመጠየቅ</a></li>
-                        <li><a href="#answers">መልሶች</a></li>
-                    </ul>
-                </nav>
+        <div class="logo-container">
+            <span class="cross-icon">✙</span>
+            <div class="site-title">
+                <h1 class="lang-am">የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተ ክርስቲያን</h1>
+                <h1 class="lang-en" style="display:none;">Ethiopian Orthodox Tewahedo Church</h1>
+                <p class="lang-am">በስመ አብ ወወልድ ወመንፈስ ቅዱስ አሐዱ አምላክ አሜን</p>
+                <p class="lang-en" style="display:none;">In the Name of the Father, the Son, and the Holy Spirit, One God, Amen.</p>
             </div>
         </div>
+        <button class="lang-btn" onclick="toggleLanguage()">English</button>
     </header>
 
-    <!-- Banner Section -->
-    <section class="hero-banner">
-        <h3>የመንፈሳዊ ጥያቄና መልስ የጥሪ ማዕከል</h3>
-        <div class="motto">"መጠየቅ ያደርጋል ሊቅ"</div>
-        <div class="hotline-box">
-            📞 ነፃ የጥሪ መስመር፡ <strong>2721</strong>
-        </div>
+    <!-- የዋናው ገጽ መግቢያ (Hero Section) -->
+    <section class="hero">
+        <h2 class="lang-am">እንኳን ወደ መንፈሳዊ ማዕከላችን በሰላም መጡ</h2>
+        <h2 class="lang-en" style="display:none;">Welcome to Our Spiritual Center</h2>
+        <p class="lang-am">የቅዱሳን አባቶቻችንን እምነትና ሥርዓት ጠብቀን ለትውልድ እናስተላልፋለን።</p>
+        <p class="lang-en" style="display:none;">Preserving and passing on the faith and traditions of our Holy Fathers.</p>
     </section>
 
-    <!-- Main Content Layout -->
+    <!-- ዋና ይዘት -->
     <div class="container">
         
-        <!-- Left Side: Interactive Forms -->
-        <main>
-            <!-- Question Submission Form -->
-            <div class="card" id="ask">
-                <h3>መንፈሳዊ ጥያቄዎን ያቅርቡ</h3>
-                <form id="questionForm">
-                    <div class="form-group">
-                        <label for="fullName">ሙሉ ስም (በምስጢር እንዲያዝ ከፈለጉ አይጻፉ)</label>
-                        <input type="text" id="fullName" placeholder="ስምዎን ያስገቡ...">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">ኢሜይል (መልሱ በኢሜይል እንዲደርስዎት)</label>
-                        <input type="email" id="email" required placeholder="example@mail.com">
-                    </div>
+        <!-- የመገናኛ ካርድ (ተግባራዊ ሊንኮች ያሉት) -->
+        <div class="card">
+            <h3 class="lang-am">የግንኙነት መረጃዎች</h3>
+            <h3 class="lang-en" style="display:none;">Contact Information</h3>
+            
+            <p class="lang-am">ለማንኛውም ጥያቄ ወይም አገልግሎት በሚከተሉት ስልኮችና ኢሜይል ያግኙን፡</p>
+            <p class="lang-en" style="display:none;">For any inquiries or services, please contact us via the options below:</p>
 
-                    <div class="form-group">
-                        <label for="phone">ስልክ ቁጥር (አስፈላጊ ከሆነ)</label>
-                        <input type="tel" id="phone" placeholder="09...">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="question">ጥያቄዎ</label>
-                        <textarea id="question" rows="5" required placeholder="የሚፈልጉትን መንፈሳዊ ጥያቄ እዚህ ጋር አብራርተው ይጻፉ..."></textarea>
-                    </div>
-
-                    <button type="submit" class="btn-submit">ጥያቄውን ላክ</button>
-                </form>
-            </div>
-
-            <!-- Answer Retrieval / Section -->
-            <div class="card" id="answers">
-                <h3>የተመለሱ ጥያቄዎችን መፈለጊያ እና ምላሽ መስጫ</h3>
-                <div class="form-group">
-                    <label for="searchCode">የጥያቄ መለያ ኮድ ያስገቡ</label>
-                    <input type="text" id="searchCode" placeholder="ምሳሌ፡ Q-102">
-                </div>
-                <button type="button" onclick="findAnswer()" class="btn-submit" style="background-color: var(--dark-green);">መልስ ፈልግ</button>
-
-                <div id="answerDisplay" class="answer-box" style="display:none;">
-                    <h4>ጥያቄ፡ ስለ ጾም ማወቅ ፈልጌ ነበር?</h4>
-                    <p><strong>መልስ (በሊቃውንቱ የተሰጠ)፡</strong> ጾም ማለት ለተወሰነ ጊዜ ከእህልና ከውኃ መከልከል... (እዚህ ጋር የሊቃውንቱ መልስ ይቀርባል)</p>
-                </div>
-            </div>
-        </main>
-
-        <!-- Right Side: About & Direct Contact -->
-        <aside>
-            <!-- About Section -->
-            <div class="card" id="about">
-                <h3>ስለ እኛ</h3>
-                <p>ይህ ማዕከል በኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተ ክርስቲያን በቤተ ሊቃውንት የሚመራ ሲሆን፣ ምዕመናን ለሚነሷቸው መንፈሳዊ፣ ታሪካዊና ሥርዓታዊ ጥያቄዎች በሊቃውንት የተደገፈ ትክክለኛ ምላሽ የሚሰጥበት የጥሪና የጽሑፍ ማዕከል ነው።</p>
-            </div>
-
-            <!-- Contact Section -->
-            <div class="card">
-                <h3>ያግኙን</h3>
-                <p>ማንኛውንም ተጨማሪ መረጃ ወይም አስተያየት ለማድረስ፡</p>
-                <p><strong>📞 አጭር የጥሪ መስመር፡</strong> 2721</p>
-                <p><strong>📱 የሞባይል ስልክ፡</strong> 0962244464</p>
-                <p><strong>📧 ኢሜይል፡</strong> info@beteliqawunt.org</p>
-            </div>
-        </aside>
+            <ul class="contact-list">
+                <li>
+                    <strong>📞 <span class="lang-am">ዋና ስልክ፡</span><span class="lang-en" style="display:none;">Main Phone:</span></strong> 
+                    <a href="tel:+251111000000" class="contact-link">+251 11 100 0000</a>
+                </li>
+                <li>
+                    <strong>📱 <span class="lang-am">ተንቀሳቃሽ ስልክ፡</span><span class="lang-en" style="display:none;">Mobile:</span></strong> 
+                    <a href="tel:+251911000000" class="contact-link">+251 91 100 0000</a>
+                </li>
+                <li>
+                    <strong>✉️ <span class="lang-am">ኢሜይል፡</span><span class="lang-en" style="display:none;">Email:</span></strong> 
+                    <a href="mailto:info@eotc.org.et" class="contact-link">info@eotc.org.et</a>
+                </li>
+            </ul>
+        </div>
 
     </div>
 
-    <!-- Footer -->
+    <!-- እግረ-ገጽ (Footer) -->
     <footer>
-        <p>&copy; 2026 ቤተ ሊቃውንት - የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተ ክርስቲያን። መብቱ በህግ የተጠበቀ ነው።</p>
-        <div class="contact-info">ያግኙን፡ 0962244464 | የጥሪ መስመር፡ 2721</div>
+        <p class="lang-am">© 2026 የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተ ክርስቲያን። መብቱ በሕግ የተጠበቀ ነው።</p>
+        <p class="lang-en" style="display:none;">© 2026 Ethiopian Orthodox Tewahedo Church. All Rights Reserved.</p>
     </footer>
 
-    <!-- JavaScript - ለቅጽ እና ለቋንቋ ስራዎች -->
+    <!-- የቋንቋ መለወጫ JavaScript logic -->
     <script>
-        // የጥያቄ መላኪያ ፍሰት ማስተናገጃ
-        document.getElementById('questionForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('ጥያቄዎ በጥሩ ሁኔታ ተልኳል! ሊቃውንቱ መልስ ሲሰጡበት በኢሜይልዎ ይደርስዎታል ወይም በኮድዎ መፈለግ ይችላሉ።');
-            this.reset();
-        });
+        let currentLang = 'am';
 
-        // መልስ የመፈለግ ተግባር
-        function findAnswer() {
-            var code = document.getElementById('searchCode').value;
-            if(code.trim() !== "") {
-                document.getElementById('answerDisplay').style.display = 'block';
+        function toggleLanguage() {
+            const amElements = document.querySelectorAll('.lang-am');
+            const enElements = document.querySelectorAll('.lang-en');
+            const langBtn = document.querySelector('.lang-btn');
+
+            if (currentLang === 'am') {
+                amElements.forEach(el => el.style.display = 'none');
+                enElements.forEach(el => el.style.display = 'block');
+                langBtn.textContent = 'አማርኛ';
+                currentLang = 'en';
             } else {
-                alert('እባክዎን ትክክለኛ የጥያቄ ኮድ ያስገቡ');
+                amElements.forEach(el => el.style.display = 'block');
+                enElements.forEach(el => el.style.display = 'none');
+                langBtn.textContent = 'English';
+                currentLang = 'am';
             }
         }
     </script>
