@@ -81,9 +81,10 @@
       color: white;
       font-size: 14px;
       cursor: pointer;
+      transition: background 0.2s ease;
     }
 
-    nav button:hover {
+    nav button:hover, nav button.active {
       background: #286846;
     }
 
@@ -138,6 +139,11 @@
       border-radius: 30px;
       font-size: 19px;
       font-weight: bold;
+      transition: transform 0.2s ease;
+    }
+
+    .call-btn:hover {
+      transform: scale(1.05);
     }
 
     form {
@@ -173,10 +179,16 @@
       font-size: 17px;
       font-weight: bold;
       cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .submit-btn:hover {
+      background: #286846;
     }
 
     .submit-btn:disabled {
       opacity: .6;
+      cursor: not-allowed;
     }
 
     #status {
@@ -207,6 +219,11 @@
       background: #fffdf8;
     }
 
+    .question-card h4 {
+      color: #164a35;
+      margin-bottom: 5px;
+    }
+
     .question-card small {
       color: #777;
     }
@@ -235,7 +252,7 @@
     }
 
     .hidden {
-      display: none;
+      display: none !important;
     }
 
     @media (max-width: 600px) {
@@ -278,9 +295,9 @@
 </header>
 
 <nav>
-  <button onclick="goTo('home')" data-am="መነሻ" data-en="Home">መነሻ</button>
-  <button onclick="goTo('ask')" data-am="ጥያቄ ይጠይቁ" data-en="Ask a Question">ጥያቄ ይጠይቁ</button>
-  <button onclick="goTo('dashboard')" data-am="Dashboard" data-en="Dashboard">Dashboard</button>
+  <button id="nav-home" class="active" onclick="goTo('home')" data-am="መነሻ" data-en="Home">መነሻ</button>
+  <button id="nav-ask" onclick="goTo('ask')" data-am="ጥያቄ ይጠይቁ" data-en="Ask a Question">ጥያቄ ይጠይቁ</button>
+  <button id="nav-dashboard" onclick="goTo('dashboard')" data-am="Dashboard" data-en="Dashboard">Dashboard</button>
   <button class="lang" onclick="toggleLanguage()">En</button>
 </nav>
 
@@ -375,7 +392,7 @@
     </div>
   </section>
 
-  <section>
+  <section id="contact">
     <h2
       data-am="እኛን ለማግኘት"
       data-en="Contact Us">
@@ -392,4 +409,141 @@
 
 <footer>
   <div
-    data-am="ቤተ ሊቃውንት
+    data-am="ቤተ ሊቃውንት © 2026 - መብቱ በሕግ የተጠበቀ ነው"
+    data-en="Bete-Liqawunt © 2026 - All Rights Reserved">
+    ቤተ ሊቃውንት © 2026 - መብቱ በሕግ የተጠበቀ ነው
+  </div>
+</footer>
+
+<script>
+  let currentLang = 'am';
+  // ጥያቄዎች እንዲቀመጡ የሚፈልጉበት የ Google Apps Script URL ካለዎት እዚህ ይተኩት
+  const API_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+
+  function goTo(sectionId) {
+    const el = document.getElementById(sectionId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+    const activeNav = document.getElementById(`nav-${sectionId}`);
+    if (activeNav) activeNav.classList.add('active');
+
+    if (sectionId === 'dashboard') {
+      loadQuestions();
+    }
+  }
+
+  function toggleLanguage() {
+    currentLang = currentLang === 'am' ? 'en' : 'am';
+    const langBtn = document.querySelector('nav .lang');
+    langBtn.textContent = currentLang === 'am' ? 'En' : 'Am';
+
+    document.querySelectorAll('[data-am]').forEach(el => {
+      const text = el.getAttribute(`data-${currentLang}`);
+      if (text) {
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.placeholder = text;
+        } else {
+          el.textContent = text;
+        }
+      }
+    });
+  }
+
+  document.getElementById('questionForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const submitBtn = document.getElementById('submitBtn');
+    const statusDiv = document.getElementById('status');
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const question = document.getElementById('question').value;
+
+    submitBtn.disabled = true;
+    statusDiv.className = '';
+    statusDiv.style.display = 'block';
+    statusDiv.textContent = currentLang === 'am' ? 'እየተላከ ነው...' : 'Sending...';
+
+    const payload = {
+      name: name || (currentLang === 'am' ? 'ያልተገለጸ' : 'Anonymous'),
+      email: email || 'N/A',
+      question: question,
+      timestamp: new Date().toLocaleString()
+    };
+
+    try {
+      if (API_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL') {
+        await fetch(API_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      }
+
+      saveLocalQuestion(payload);
+
+      statusDiv.className = 'success';
+      statusDiv.textContent = currentLang === 'am' 
+        ? 'ጥያቄዎ በተሳካ ሁኔታ ተልኳል!' 
+        : 'Your question has been sent successfully!';
+      
+      document.getElementById('questionForm').reset();
+      loadQuestions();
+    } catch (err) {
+      statusDiv.className = 'error';
+      statusDiv.textContent = currentLang === 'am' 
+        ? 'ስህተት ተፈጥሯል። እባክዎ እንደገና ይሞክሩ።' 
+        : 'An error occurred. Please try again.';
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+
+  function saveLocalQuestion(data) {
+    let questions = JSON.parse(localStorage.getItem('questions') || '[]');
+    questions.unshift(data);
+    localStorage.setItem('questions', JSON.stringify(questions));
+  }
+
+  async function loadQuestions() {
+    const listDiv = document.getElementById('questionsList');
+    listDiv.textContent = currentLang === 'am' ? 'ጥያቄዎችን በመጫን ላይ...' : 'Loading questions...';
+
+    let questions = [];
+
+    if (API_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL') {
+      try {
+        const res = await fetch(API_URL);
+        questions = await res.json();
+      } catch (e) {
+        questions = JSON.parse(localStorage.getItem('questions') || '[]');
+      }
+    } else {
+      questions = JSON.parse(localStorage.getItem('questions') || '[]');
+    }
+
+    if (questions.length === 0) {
+      listDiv.textContent = currentLang === 'am' 
+        ? 'ምንም የተመዘገበ ጥያቄ የለም።' 
+        : 'No questions submitted yet.';
+      return;
+    }
+
+    listDiv.innerHTML = questions.map(q => `
+      <div class="question-card">
+        <h4>${q.name}</h4>
+        <p>${q.question}</p>
+        <small>🕒 ${q.timestamp}</small>
+      </div>
+    `).join('');
+  }
+
+  // ገጹ ሲከፈት ጥያቄዎች ካሉ ያሳያል
+  loadQuestions();
+</script>
+
+</body>
+</html>
